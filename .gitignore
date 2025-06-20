@@ -1,0 +1,28 @@
+# File di log/temporanei generati da LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+*.nav
+*.snm
+*.vrb
+
+
+# File di backup (Editor come TeXstudio, Overleaf, etc.)
+*~
+*.bak
+*.backup
+*.tmp
+
+# Cartelle temporanee di output
+_build/
+output/
