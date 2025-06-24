@@ -1,0 +1,66 @@
+\documentclass[twoside,single]{lion-msc}
+
+\title{{ \texttt{The effect of temporal jitter on single photon indistinguishability}}}
+\author{Andrea Maccarinelli}
+\studentid{4535286}                           % check you student ID, LaTeX does not do this
+%\abstract{Here goes a wonderful abstract.}     % limit your self to 1/2 page or 500 words
+\supervisor{Wolfgang Loeffler}                         % Note that this should be a LION staff member!
+\corrector{Evert van Nieuwenburg}                   % This could be a LION staff member or your external supervisor
+
+\degree{Master of Science}                     % The default option is "Bachelor of Science", change if needed
+
+%\major{Physics and Astronomy}                  % The default option is "Physics", change if needed
+%\major{Physics and Mathematics}
+
+% optional cover picture - should be jpg or pdf
+% \coverpicture{\includegraphics[width=13cm]{thesisstyle.png}}
+
+% Use this to make hyperlinks visible in the document.
+% \hypersetup{colorlinks=true}
+
+% ---------------------------------------------------------------- My defintions!
+% \renewcommand{\vec}[1] {\ensuremath{ \overrightarrow{ #1 } }}
+\renewcommand{\vec}[1] {\ensuremath{ \mathbf{ #1 } }}
+% \bra \ket \braket and \proj
+\newcommand{\bra}[1]{\ensuremath{\langle #1 \vert}}
+\newcommand{\ket}[1]{\ensuremath{\vert #1 \rangle}}
+\newcommand{\braket}[2]{\ensuremath{\langle #1 \vert #2 \rangle}}
+\newcommand{\proj}[1]{\ensuremath{\vert #1 \rangle \langle #1 \vert}}
+
+\newcommand{\kpar}{\ensuremath{k_\parallel}}
+% ----------------------------------------------------------------
+
+% \usepackage{tocloft}
+% \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+
+\begin{document}
+
+% roman numbering in the table of contents section
+\pagenumbering{roman}
+
+\maketitle
+
+% Table of contents :  it is a good idea to include this into your thesis
+\tableofcontents
+\cleardoublepage
+
+% The following list of figures and list of tables are optional. Remove the comments if needed
+%\listoffigures
+%\newpage
+
+%\listoftables
+%\newpage
+
+% in the main part of the document use standard arabic numbers. Page counter resets to 1.
+\pagenumbering{arabic}
+
+
+%\maketitle
+
+\chapter{Chapter 1}
+
+Here you type the text for the first chapter of your thesis.
+
+\end{document}
+
