@@ -15,7 +15,7 @@
 *.nav
 *.snm
 *.vrb
-
+*.pdf
 
 # File di backup (Editor come TeXstudio, Overleaf, etc.)
 *~
