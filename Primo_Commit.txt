@@ -3,3 +3,6 @@ Ciaone, Questo è il primo commit di questa repository !!
 Ciaone, questo è il primo commit dal macbook su questa repository !!!
 
 E' Necessario aggiornare il login a GitHub, vediamo se funziona !!
+
+Parece que Mio es en la misma pagina de yo, por que le mira a lo esqueletro de mi tesi.
+Seguimos !!
