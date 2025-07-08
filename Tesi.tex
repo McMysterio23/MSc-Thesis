@@ -34,6 +34,27 @@
 % \renewcommand{\cftchapdotsep}{\cftdotsep}
 \usepackage{comment}
 
+
+% Redefine autoref names to be capitalized
+\AtBeginDocument{%
+  \renewcommand{\sectionautorefname}{Section}
+  \renewcommand{\subsectionautorefname}{Subsection}
+  \renewcommand{\chapterautorefname}{Chapter}
+  \renewcommand{\figureautorefname}{Figure}
+  \renewcommand{\tableautorefname}{Table}
+  \renewcommand{\equationautorefname}{Equation}
+}
+
+% Optional: enable visible colored links (if hidelinks is unwanted)
+% \hypersetup{
+%   hidelinks=false,
+%   colorlinks=true,
+%   linkcolor=blue,
+%   urlcolor=blue,
+%   citecolor=blue
+% }
+
+
 \begin{document}
 
 % roman numbering in the table of contents section
@@ -64,5 +85,9 @@
 \include{Chapter4}
 \include{Chapter5}
 
+
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}
 
