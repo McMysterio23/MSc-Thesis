@@ -44,7 +44,7 @@ To investigate the optical jitter affecting a pulsed laser source, it is first e
 
 \autoref{sec:Def-Pulses} provides the reader with the essential background on optical pulses, highlighting their temporal properties and their connection to the spectral domain. Particular attention is given to the Time-Bandwidth product, which plays a central role in later analysis.
 
-Finally, \autoref{sec:Def-Techniques} outlines the theoretical foundations of the experimental techniques employed throughout this work, serving as a conceptual bridge between the physical principles and the measurements presented in the following chapters.
+Finally, \autoref{sec:Def-Techniques} outlines the theoretical background of the experimental techniques employed throughout this work, serving as a conceptual bridge between the physical principles and the measurements presented in the following chapters.
 
 \section{Timing Jitter}
 \label{Sec:Def-Jitter}
@@ -55,9 +55,9 @@ Jitter was originally introduced in signal theory as the deviation of the timing
 
 In this thesis, we focus on jitter as it appears in optical pulses, which serve as carriers of precise timing information for our instruments and detectors. For this reason, the specific notion of \emph{timing jitter} is most relevant. According to the IEEE, timing jitter is defined as the deviation of the actual timing instants of a waveform from their ideal temporal positions~\cite{General_IEEE}.
 
-To aid understanding, we introduce \autoref{AddAmpl}, which shows an example of timing jitter induced by additive amplitude noise on a signal’s rising edge. In the figure, the noisy waveform crosses the detection threshold over a spread of time instants, deviating from the ideal reference point.
+\autoref{AddAmpl} shows an example of timing jitter induced by additive amplitude noise on a signal’s rising edge. In the figure, the noisy waveform crosses the detection threshold over a spread of time instants, deviating from the ideal reference point.
 
-This is the first mention in the thesis of thresholding—a concept that is deliberately introduced early, as it is central to the interpretation of timing jitter. Only one threshold crossing is registered per signal transition; the essential question becomes when this crossing occurs, relative to the ideal time. This forms the core of timing jitter analysis.
+
 
 \begin{figure}[hbtp]
 \centering
@@ -69,12 +69,12 @@ This is the first mention in the thesis of thresholding—a concept that is deli
 %INIZIO DEL SOTTOCAPITOLO CON LA DESCRIZIONE DELLA CATEGORIZZAZIONE DEL TIMING JITTER IN RANDOMICO O DETERMINISTICO
 \subsection{Classification of timing jitter sources}
 
-Timing jitter can be broadly classified into two main categories: \emph{deterministic jitter (DJ)} and \emph{random jitter (RJ)}. This distinction is useful to understand the nature of different noise mechanisms and how they combine to affect the precision of a timing signal.
+Timing jitter can be broadly classified into two main categories: \emph{deterministic jitter (DJ)} and \emph{random jitter (RJ)}. 
 
-Deterministic jitter arises from predictable, repeatable sources such as crosstalk, power supply noise, or duty cycle distortion. In contrast, random jitter originates from stochastic processes, such as thermal noise or quantum fluctuations in detection, and is inherently unbounded over long timescales.
+%Deterministic jitter arises from predictable, repeatable sources such as crosstalk, power supply noise, or duty cycle distortion. In contrast, random jitter originates from stochastic processes, such as thermal noise or quantum fluctuations in detection, and is inherently unbounded over long timescales.
 
-We identify with the name Random jitter (RJ) all those jitter sources that don't allow successive references to be systematically determined, and this is the reason why the mathematical treatment, just like in Quantum Physics, translates to a statistical framework.
-By applying the Central limit theory, RJ can be treated as a mean zero distortion of the waveform, with an underlying gaussian probability density function $f_{RJ}(x)$.
+We identify with the name Random jitter (RJ) all those jitter sources that don't allow successive references to be systematically determined, and this is the reason why a statistical treatment is needed.
+By applying the Central limit theory, RJ can be treated as a mean zero distortion of the waveform, with an unbounded underlying gaussian probability density function $f_{RJ}(x)$.
 
 \begin{equation}
 f_{RJ}(x) = \frac{1}{\sigma \sqrt{2 \pi }}e^{-\frac{x^2}{2 \sigma ^2}}
@@ -82,11 +82,37 @@ f_{RJ}(x) = \frac{1}{\sigma \sqrt{2 \pi }}e^{-\frac{x^2}{2 \sigma ^2}}
 \end{equation}
 In this function we can identify x as the random variable that eventually gives contribution to the Total Jitter (TJ), as well as the standard deviation $\sigma$ that defines entirely the features of $f_{RJ}(x)$.
 
-In presence of low contributions in terms of deterministic jitter, Random Jitter can be studied starting from a considerable number of timing errors observed, to which it's possible to draw a statistic and proceed with the analysis.
+Random Jitter is studied usually together with a large number of timing errors detected, because with the assumption of low contributions in terms of DJ, we can understand the features of the underlying probability density function.
 
-\autoref{RandomIMG} (a) shows how the pdf $f_{RJ}(x)$ describes the random contribution in terms of jitter to the actual position of the waveform, without forgetting that such random extraction  happens for every rising or falling edge of the waveform independently.
 
-Deterministic Jitter (DJ) on the other hand is a type of jitter that can be 
+%In presence of low contributions in terms of deterministic jitter, Random Jitter can be studied starting from a considerable number of timing errors observed, to which it's possible to draw a statistic and proceed with the analysis.
+
+\autoref{RandomIMG} (a) shows how the pdf $f_{RJ}(x)$ describes the random contribution in terms of jitter to the actual position of the waveform. %without forgetting that such random extraction  happens for every rising or falling edge of the waveform independently.
+
+When the position of a reference event on the waveform can be deterministically retrieved from the previous few ones, we are dealing with deterministic jitter. While DJ has usually several sources, it is common practice to decompose it within the different types of behavior.
+The key difference with RJ lies in the replicable trait of its contributions, in the scenario in which we have fully understood every jitter source.
+By being Systemic, DJ doesn't limits to a constant type of behavior, but instead gives an explanation to periodic and non periodic bounded patterns \cite{General_IEEE}. 
+\autoref{RandomIMG} (b) shows how the presence of a deterministic external aggressor signal striking the input waveform, causes a shift in the actual detection of the threshold crossing. To a greater extent, we can safely say that such behavior happens also in the scenario of several sources acting together in a deterministic way as presented also in \cite{Crosstalk_IEEE1}.
+
+%The modelization of the DJ sources, finds its foundations in an alternative use of PDFs, that differs from the ones that we encountered before for the RJ, in terms of domain being always bounded.
+
+Despite the deterministic nature of these sources, the mathematical treatment doesn't differ extremely from the one seen for the RJ, with the key difference being the domain of definition, that results here strictly bounded. As per the last published article about timing jitter belonging to the IEEE, the main sources of DJ can be divided onto Data-dependent Jitter(DDJ), Periodic Jitter (PJ) and Bounded Uncorrelated Jitter(BUJ).
+
+Usually at the first level of any jitter-related study there is the measure of the amount of Total Jitter (TJ), that includes both deterministic and random contributions. Since both of these are described by PDFs, the resulting total jitter happens to be the linear convolution of the Random and Deterministic complessive density functions.
+While in principle the $f_{RJ}(x)$ is a Gaussian, the other argument of the convolition happens to be the convolution itself of every deterministic source. 
+
+\begin{equation}
+f_{DJ}(x) = f_{DDJ}(x) \circledast f_{PJ}(x) \circledast f_{BUJ}(x) 
+\label{eq:DetJitterConvo}
+\end{equation}
+
+\begin{equation}
+f_{TJ}(x) = f_{DJ}(x) \circledast f_{RJ}(x) 
+\label{eq:TOTjitterConvo}
+\end{equation}
+
+
+
 
 \begin{figure}[hbtp]
 \centering
@@ -125,8 +151,14 @@ Define the TBP and explain its role as a measure of pulse quality.
 Include TBP values for common shapes: Gaussian (0.44), sech² (0.315), etc.
 Explain that TBP sets a fundamental limit: bandwidth and pulse duration cannot both be arbitrarily small.
 Optionally, relate to your experiment: estimating the expected pulse duration from spectral width.
+
+
+Citazioni da utilizzare :
+per la parte della definizione delle prime definizioni e delle formule che collegano le stesse alle cose successive procedi con l'utilizzo di questa
+\cite{shapiro1984}
 \end{comment}
 
+ciaone \cite{shapiro1984}
 
 
 \section{HBT and TCSPC: Measuring and interpreting ps optical jitter}
@@ -174,5 +206,35 @@ Optionally, relate to your experiment: estimating the expected pulse duration fr
 
 
 \subsection{Hanbury Brown Twiss Experiment}
+
+
+
+
+
+
+
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=1\textwidth]{HBT_Sketch}
+\caption{Visual Representation of the Hanbury-Brown-Twiss setup implemented in the thesis}
+\label{HBT_Sketch}
+\end{figure}
 \subsection{Time-correlated single photon counting}
+
+
+
+
+
+
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.75\textwidth]{TCSPC_sketch}
+\caption{Visual Representation of the TCSPC setup implemented in the thesis}
+\label{HBT_Sketch}
+\end{figure}
+
 \subsection{Second order correlation function}
