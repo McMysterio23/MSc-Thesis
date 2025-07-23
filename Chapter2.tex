@@ -125,8 +125,6 @@ f_{TJ}(x) = f_{DJ}(x) \circledast f_{RJ}(x)
 
 \section{Optical pulses}
 \label{sec:Def-Pulses}
-
-
 %Scaletta di cose da dire secondo il nostro caro amico in comune !!!
 \begin{comment}
 1. Introduction to Optical Pulses
@@ -155,10 +153,86 @@ Optionally, relate to your experiment: estimating the expected pulse duration fr
 
 Citazioni da utilizzare :
 per la parte della definizione delle prime definizioni e delle formule che collegano le stesse alle cose successive procedi con l'utilizzo di questa
-\cite{shapiro1984}
+\cite{shapiro1984\cite{shapiro1984, Paschotta_2007_light_pulses}}
 \end{comment}
+Throughout this thesis we worked with pulsed laser sources, whose essential feature is the optical pulse.
+Lasers can operate essentially in two completely organized regimes : the continuous wavelength lasing (CW) or the mode-locked pulsing.
+When the set of longitudinal modes in the laser cavity is maintained in fixed phase and amplitude conditions the output laser beam will be a well defined function of time, realizing a mode-locked pulse train \cite{shapiro1984}.
 
-ciaone \cite{shapiro1984}
+\subsection{Repetition rate and Pulse duration}
+Among the basic properties of optical pulses, the repetition rate $f_{\text{rep}}$ and the optical pulse duration are two key parameters that should be mentioned before any mathematical derivation.
+
+The pulse repetition rate, sometimes also called pulse repetition frequency, of a pulsed laser source is defined as the number of emitted pulses in a second, or alternatively the inverse temporal pulse spacing \cite{RP2005_rep_rate}.
+
+The temporal duration, also referred as pulse width, of an optical pulse finds its foundations in the concept of Full Width Half-Magnitude (FWHM). While this definition is widely accepted, for some specific cases (e.g. solitons described by a $sech^2$ function) it is preferred the use of a duration parameter $\tau$ that is approximately the ratio between the FWHM and a conversion parameter valued 1.726 \cite{RP2005_duration}. 
+
+\subsection{Mathematical derivation of the temporal and spectral intensity functions}
+In order to define even more the features of the optical pulses we should first define a pair of Fourier integrals :
+\begin{equation}
+E(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e(\omega)e^{-i\omega t}\, d\omega
+\label{eq:ElectricalField}
+\end{equation}
+
+\begin{equation}
+e(\omega) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} E(t)e^{i\omega t}\, dt
+\label{eq:FT_Electrical}
+\end{equation}
+
+We then define the complex signal $V(t)$ of a plane wave optical pulse, related to the magitude of the electrical field $E(t)$ described in \autoref{eq:ElectricalField} at a fixed point in the space writing the following equations :
+
+\begin{equation}
+V(t) = \frac{1}{\sqrt{2\pi}}\int_{0}^{+\infty} 2e(\omega)e^{-i\omega t}\, d\omega
+= \frac{1}{\sqrt{2\pi}}\int_{0}^{+\infty} \nu(\omega)e^{-i\omega t}\, d\omega
+\label{eq:OptPulse1}
+\end{equation}
+
+To achieve the final formulation of \autoref{eq:OptPulse1} the amplitudes of the negative frequency components of \autoref{eq:ElectricalField} are suppressed, while the positive ones are instead doubled.
+It follows that 
+
+\begin{align}
+\nu(\omega) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} V(t)e^{+i\omega t}\, dt \notag \\
+            &= 2e(\omega) \quad \quad (\omega > 0) \notag \\
+            &= 0  \quad \quad \quad (\omega < 0)
+\label{eq:OptPulseFreq}
+\end{align}
+
+These complex functions, namely $V(t)$ as well as $\nu (t)$ are perfect candidates to define the optical pulse in the time and in the frequency domain repectively.
+
+Moreover this formulation helps defining the spectral amplitude and the spectral phase associated to the frequency domain formulation.
+In particular, by writing
+
+\begin{equation}
+\nu (\omega) = a(\omega) e^{-i\phi (\omega)}
+\label{eq:SpecFeatures}
+\end{equation}
+
+we will recognize $a(\omega)$ as the spectral amplitude and $\phi (\omega)$ as the spectral phase \cite{Bradley1974}.
+When the pulse bandwidth $\Delta \omega$ is narrow compared to the mean optical frequency $\omega _0$ we can then write 
+
+\begin{equation}
+    V(t)=A(t)e^{i(\Phi (t)-\omega _{0} t )}
+\label{eq:OptSynthetic}
+\end{equation}
+
+In the case of study of optical pulses, the temporal amplitude $A(t)$ and the temporal phase $\Phi (t)$ of the optical frequency wave are both slowly varying functions in the time domain. Thus the instantaneous intensity associated to the optical pulse is 
+
+\begin{align}
+    I(t) &= V(t)V^{*}(t) \notag \\
+         &= A^{2}(t)
+\label{eq:OptIntensity}
+\end{align}
+
+Following the same steps as in the previous case it is also possible to define the spectral intensity function
+\begin{align}
+    i(\omega) &= \nu (\omega)\nu ^{*}(\omega) \notag \\
+              &= a^2 (\omega)
+\label{eq:OptFreqIntensity}
+\end{align}
+
+\subsection{The Time-Bandwidth product}
+According to the parceval
+
+
 
 
 \section{HBT and TCSPC: Measuring and interpreting ps optical jitter}
@@ -221,8 +295,13 @@ ciaone \cite{shapiro1984}
 \caption{Visual Representation of the Hanbury-Brown-Twiss setup implemented in the thesis}
 \label{HBT_Sketch}
 \end{figure}
-\subsection{Time-correlated single photon counting}
 
+
+
+\subsection{Time-correlated single photon counting}
+\begin{comment}
+    Tutte le informazioni le trovi alla pagina (effettiva) 100 del libro TCSPC TOTAL, che ho messo nella cartella material di OneDrive
+\end{comment}
 
 
 
