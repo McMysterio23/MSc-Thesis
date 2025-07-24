@@ -153,7 +153,7 @@ Optionally, relate to your experiment: estimating the expected pulse duration fr
 
 Citazioni da utilizzare :
 per la parte della definizione delle prime definizioni e delle formule che collegano le stesse alle cose successive procedi con l'utilizzo di questa
-\cite{shapiro1984\cite{shapiro1984, Paschotta_2007_light_pulses}}
+\cite{shapiro1984, Paschotta_2007_light_pulses}
 \end{comment}
 Throughout this thesis we worked with pulsed laser sources, whose essential feature is the optical pulse.
 Lasers can operate essentially in two completely organized regimes : the continuous wavelength lasing (CW) or the mode-locked pulsing.
@@ -230,14 +230,49 @@ Following the same steps as in the previous case it is also possible to define t
 \end{align}
 
 \subsection{The Time-Bandwidth product}
-According to the parceval
+According to the Parceval's Theorem the total energy of a pulse is proportional to the area under either of the spectral or intensity profiles.
+\begin{equation}
+    \int_{-\infty}^{+\infty} I(t)\, dt \quad \quad  \int_{0}^{+\infty} i(\omega)\, d\omega
+\label{eq:AreaIntensities}
+\end{equation}
 
+This notation clearly enhances the symmetry between the temporal and frequancy descriptions of the pulse.
+Regardless of the description that we wish to present, the optical pulse is completely defined by a phase and an intensity. From the mathematical perspective there is a one-on-one corrispondence between the two different formulation of the intensity profile.
 
+More specifically the general property that regulates the mutual mapping that links the two formulations arises from the Uncertainty Principle, stating that : 
+\begin{equation}
+    \frac{(\Delta \omega \Delta t)}{2\pi} \ge K
+\label{eq:Uncertainty}
+\end{equation}
+Where K is by constant value whose value depends on the shapes of the two intensity profiles.
+
+Usually in the context of pulsed laser source, pulses can be described as "Transform-limited" or also "bandwidth-limited" : this only happens when given a certain bandwidth in the temporal domain it is produced the shortest possible pulse obtainable.
+In such a case the actual duration is 
+\begin{equation}
+    \Delta t = \frac{2\pi K}{\Delta \omega}
+\label{eq:TransLimited}
+\end{equation}
+
+In the scientific literature the value of $(\Delta \omega \Delta t)/2\pi$ is referred as "time-bandwidth product" $P$ and represent a key parameter in the field of ultra short laser pulses. On behalf of the solitons created by mode locked lasers, the value of P is a good indicator to assess the extent to which the production of ideal pulses is being achieved \cite{shapiro1984}.
+%Finally, optical pulses that are completely devoid of amplitude or frequency are defined "bandwidth-limited".
+
+Let us introduce a basic example to conclude the treatment: The gaussian-shaped spectral intensity profile.
+\begin{equation}
+    i(\omega) = e^{\frac{-(\omega - \omega _0 )^2)}{\alpha}}
+\label{eq:exampleSpectral}
+\end{equation}
+
+In this scenario also in the temporal domain the intensity has the shape of a gaussian 
+\begin{equation}
+    I(t)=\alpha e^{-\alpha (t-t_0)^2}
+\label{eq:exampleTemporal}
+\end{equation}
+
+In this ideal scenario, the constant parameter $K$, introduced before in \autoref{eq:Uncertainty}, will result in being $K = (2ln2)/\pi = 0.441$.
 
 
 \section{HBT and TCSPC: Measuring and interpreting ps optical jitter}
 \label{sec:Def-Techniques}
-
 %Scaletta di cose da dire secondo il nostro caro amico in comune !!!
 
 % ====================== INIZIO SCALETTA SEZIONE TECNICHE SPERIMENTALI ======================
@@ -274,13 +309,13 @@ According to the parceval
 %        • HBT usato per costruire g^{(2)}(τ) e studiare correlazioni temporali.
 %    - Entrambe le tecniche sensibili al jitter temporale dei rivelatori.
 %    - Entrambe contribuiscono a caratterizzare la risposta temporale complessiva del sistema.
-% ====================== FINE SCALLETTA ======================
+% ====================== FINE SCALETTA ======================
 
 
 
 
-\subsection{Hanbury Brown Twiss Experiment}
-
+\subsection{The HBT experiment and the second order correlation function}
+\label{subs:HBT}
 
 
 
@@ -299,6 +334,7 @@ According to the parceval
 
 
 \subsection{Time-correlated single photon counting}
+\label{subs:TCSPC}
 \begin{comment}
     Tutte le informazioni le trovi alla pagina (effettiva) 100 del libro TCSPC TOTAL, che ho messo nella cartella material di OneDrive
 \end{comment}
@@ -316,4 +352,5 @@ According to the parceval
 \label{HBT_Sketch}
 \end{figure}
 
-\subsection{Second order correlation function}
+%\subsection{Second order correlation function}
+%\label{subs:g2}
