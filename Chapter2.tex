@@ -273,53 +273,85 @@ In this ideal scenario, the constant parameter $K$, introduced before in \autore
 
 \section{HBT and TCSPC: Measuring and interpreting ps optical jitter}
 \label{sec:Def-Techniques}
-%Scaletta di cose da dire secondo il nostro caro amico in comune !!!
+\begin{comment}
+Scaletta di cose da dire secondo il nostro caro amico in comune !!!
 
-% ====================== INIZIO SCALETTA SEZIONE TECNICHE SPERIMENTALI ======================
-% 1. Second-Order Correlation Function
-%    - Introdurre g^{(2)}(τ) come misura statistica delle correlazioni temporali tra eventi di rivelazione fotonica.
-%    - Spiegare il significato per diverse sorgenti luminose: luce classica, termica, coerente, singoli fotoni.
-%    - Esplicitare la sua forma normalizzata:
-%        g^{(2)}(τ) = ⟨I(t) I(t+τ)⟩ / ⟨I(t)⟩^2
-%      oppure per rivelazione discreta:
-%        g^{(2)}(τ) ∝ N_{12}(τ) / (N_1 ⋅ N_2)
-%    - Interpretazione qualitativa:
-%        • g^{(2)}(0) < 1 → luce sub-poissoniana (quantistica, antibunching)
-%        • g^{(2)}(0) = 1 → luce coerente (Poissoniana)
-%        • g^{(2)}(0) > 1 → luce termica (bunched)
+ ====================== INIZIO SCALETTA SEZIONE TECNICHE SPERIMENTALI ======================
+ 1. The Hanbury Brown Twiss effect and the second-order correlation function
+    - Introdurre g^{(2)}(τ) come misura statistica delle correlazioni temporali tra eventi di rivelazione fotonica.
+    - Spiegare il significato per diverse sorgenti luminose: luce classica, termica, coerente, singoli fotoni.
+    - Esplicitare la sua forma normalizzata:
+        g^{(2)}(τ) = ⟨I(t) I(t+τ)⟩ / ⟨I(t)⟩^2
+      oppure per rivelazione discreta:
+              g^{(2)}(τ) ∝ N_{12}(τ) / (N_1 ⋅ N_2)
+                 - Interpretazione qualitativa:
+       • g^{(2)}(0) < 1 → luce sub-poissoniana (quantistica, antibunching)
+        • g^{(2)}(0) = 1 → luce coerente (Poissoniana)
+        • g^{(2)}(0) > 1 → luce termica (bunched)
 
-% 2. Configurazione HBT
-%    - Descrivere lo schema con beam splitter: un impulso ottico diviso su due rivelatori.
-%    - Obiettivo: misurare conteggi in coincidenza tra rivelatori.
-%    - Evidenziare l'importanza dei ritardi temporali tra eventi.
-%    - Limitazioni:
-%        • Risoluzione temporale limitata dalla risposta dei rivelatori e dell'elettronica.
-%        • Necessaria normalizzazione accurata.
+ 2. Configurazione HBT
+    - Descrivere lo schema con beam splitter: un impulso ottico diviso su due rivelatori.
+    - Obiettivo: misurare conteggi in coincidenza tra rivelatori.
+    - Evidenziare l'importanza dei ritardi temporali tra eventi.
+    - Limitazioni:
+        • Risoluzione temporale limitata dalla risposta dei rivelatori e dell'elettronica.
+        • Necessaria normalizzazione accurata.
 
-% 3. TCSPC (Time-Correlated Single Photon Counting)
-%    - Principio: registrare intervallo temporale tra un trigger (es. sync laser) e rivelazione di un singolo fotone.
-%    - Si accumula un istogramma su molti impulsi.
-%    - Risultato: profilo temporale della probabilità di rivelazione (convoluto con risposta del sistema).
-%    - Perché è così preciso: sensibilità a singolo fotone, risoluzione su scala dei ps.
-%    - Limitazioni: pile-up, tempo morto del rivelatore.
+ 3. TCSPC (Time-Correlated Single Photon Counting)
+    - Principio: registrare intervallo temporale tra un trigger (es. sync laser) e rivelazione di un singolo fotone.
+    - Si accumula un istogramma su molti impulsi.
+    - Risultato: profilo temporale della probabilità di rivelazione (convoluto con risposta del sistema).
+    - Perché è così preciso: sensibilità a singolo fotone, risoluzione su scala dei ps.
+    - Limitazioni: pile-up, tempo morto del rivelatore.
 
-% 4. Ruolo nel contesto della tesi
-%    - Confronto tra TCSPC e HBT:
-%        • TCSPC usato per analizzare jitter temporale e forma degli impulsi.
-%        • HBT usato per costruire g^{(2)}(τ) e studiare correlazioni temporali.
-%    - Entrambe le tecniche sensibili al jitter temporale dei rivelatori.
-%    - Entrambe contribuiscono a caratterizzare la risposta temporale complessiva del sistema.
-% ====================== FINE SCALETTA ======================
+ 4. Ruolo nel contesto della tesi
+    - Confronto tra TCSPC e HBT
+        • TCSPC usato per analizzare jitter temporale e forma degli impulsi.
+        • HBT usato per costruire g^{(2)}(τ) e studiare correlazioni temporali.
+    - Entrambe le tecniche sensibili al jitter temporale dei rivelatori.
+    - Entrambe contribuiscono a caratterizzare la risposta temporale complessiva del sistema.
+ ====================== FINE SCALETTA ======================
+\end{comment}
+
+% Inizio della parte scritta di questo capitolo : mi baso su quello che mi ha consigliato Ugo di dire qui in fase di esordio
+%The state of the art of modern single photon detector has managed to reach time resolutions easily higher than conventional high-speed photo diodes
+The state of the art of modern single photon detectors have easily surpassed the time resolution of conventional high-speed photodiodes.
+
+Although we study pulsed laser sources, and not single photon light, our analysis rely on a detection system based on a \emph{superconducting nanowire single photon detector (SNSPD)}.
+%Throughout this thesis we study optical pulses using a \emph{superconducting nanowire single photon detector (SNSPD)}
+
+\autoref{subs:HBT} presents the Hanbury Brown Twiss (HBT) experiment, as well as its tight binding with the second-order correlation function.
+\autoref{subs:TCSPC} includes a description of the functioning principle of the time-correlated single photon counting (TCSPC) procedure, a key way to inspect the shape of the optical pulses with a probabilistic approach.
+%In the end \autoref{subs:comparison} will finally give a comparison in terms of timing jitter to these two experimental techniques, providing the mathematical framework that lies behind the TSCPC and the HBT Start Stop, two sides of the same medal
+
+
 
 
 
 
 \subsection{The HBT experiment and the second order correlation function}
 \label{subs:HBT}
+%The Hanbury Brown Twiss experiment is a reliable choice to minimize the strong behavior brought
+Using an SNSPD requires to take into account key features like the timing jitter, the detection probability as well as the detector deadtime.
+By definition the deadtime is the time required by the nanowire to recover from the last detection in order to be ready to receive the next one. 
+The order of magnitude of this parameter is generally of nanoseconds : in this scenario a useful strategy is to split the incoming pulsed light into two different fibers, with the use of a 50:50 fiber directional coupler, to carry out detections with twice the amount of detectors.
 
+This type of experimental setup belongs to the name of two english scientists, Hanbury Brown and Richard Twiss, who developed this intensity interferometer to study the size of Sirius in the mid 50s \cite{1956Natur.178.1046H}.
 
+This experimental setup can be used either in a Start/Stop mode, collecting on an histogram the relative times measured between the \emph{START} and the \emph{STOP} consecutive detections of the two detectors, or otherwise by correlating the two streams of clicks. %Richiede manutenzione questa frase !!!!
+In both these cases the final goal is the refinement of the second-order correlation function $g^{2}(\tau)$, with the key difference being that in the latter scenario the resulting coincidences histogram is not limited to consecutive detections like in the first, limited, case.
 
+The $g^{2}(\tau)$ quantifies the intensity fluctuations in the correlated signal and the classical formulation is shown in \autoref{Classical_g2}.
 
+\begin{equation}
+g^{(2)}(\tau) = \frac{\langle I_2(t) I_3(t + \tau) \rangle}{\langle I_2(t) \rangle \langle I_3(t + \tau) \rangle}
+\label{Classical_g2}
+\end{equation}
+In this equation $I(t)$ represent the intensity of the light at the time $t$, while the subscript indicates the detector, according to the visual representation  provided by \autoref{HBT_Sketch}.
+
+A special focus in this thesis has been the refinement of the $g^{2}(\tau)$ from the two streams of detections belonging to the two detectors.
+In this scenario the actual intensities measured at the time t are expressed by the number of counts in the specific temporal binsize, realizing 
+%Aggiungi qui la successiva equazione, come da esempio !!
 
 
 
@@ -349,8 +381,8 @@ In this ideal scenario, the constant parameter $K$, introduced before in \autore
 \centering
 \includegraphics[width=0.75\textwidth]{TCSPC_sketch}
 \caption{Visual Representation of the TCSPC setup implemented in the thesis}
-\label{HBT_Sketch}
+\label{TCSPC_Sketch}
 \end{figure}
 
-%\subsection{Second order correlation function}
-%\label{subs:g2}
+\subsection{Second order correlation function}
+\label{subs:comparison}
