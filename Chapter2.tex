@@ -92,14 +92,14 @@ Random Jitter is studied usually together with a large number of timing errors d
 When the position of a reference event on the waveform can be deterministically retrieved from the previous few ones, we are dealing with deterministic jitter. While DJ has usually several sources, it is common practice to decompose it within the different types of behavior.
 The key difference with RJ lies in the replicable trait of its contributions, in the scenario in which we have fully understood every jitter source.
 By being Systemic, DJ doesn't limits to a constant type of behavior, but instead gives an explanation to periodic and non periodic bounded patterns \cite{General_IEEE}. 
-\autoref{RandomIMG} (b) shows how the presence of a deterministic external aggressor signal striking the input waveform, causes a shift in the actual detection of the threshold crossing. To a greater extent, we can safely say that such behavior happens also in the scenario of several sources acting together in a deterministic way as presented also in \cite{Crosstalk_IEEE1}.
+\autoref{RandomIMG} (b) shows how the presence of a deterministic external aggressor signal striking the input waveform, causes a shift in the actual detection of the threshold crossing. To a greater extent, we can safely say that such behaviour happens also in the scenario of several sources acting together in a deterministic way as presented also in \cite{Crosstalk_IEEE1}.
 
 %The modelization of the DJ sources, finds its foundations in an alternative use of PDFs, that differs from the ones that we encountered before for the RJ, in terms of domain being always bounded.
 
 Despite the deterministic nature of these sources, the mathematical treatment doesn't differ extremely from the one seen for the RJ, with the key difference being the domain of definition, that results here strictly bounded. As per the last published article about timing jitter belonging to the IEEE, the main sources of DJ can be divided onto Data-dependent Jitter(DDJ), Periodic Jitter (PJ) and Bounded Uncorrelated Jitter(BUJ).
 
-Usually at the first level of any jitter-related study there is the measure of the amount of Total Jitter (TJ), that includes both deterministic and random contributions. Since both of these are described by PDFs, the resulting total jitter happens to be the linear convolution of the Random and Deterministic complessive density functions.
-While in principle the $f_{RJ}(x)$ is a Gaussian, the other argument of the convolition happens to be the convolution itself of every deterministic source. 
+Usually at the first level of any jitter-related study there is the measure of the amount of Total Jitter (TJ), that includes both deterministic and random contributions. Since both of these are described by PDFs, the resulting total jitter happens to be the linear convolution of the Random and Deterministic density functions.
+While in principle the $f_{RJ}(x)$ is a Gaussian, the other argument of the convolution happens to be the convolution itself of every deterministic source. 
 
 \begin{equation}
 f_{DJ}(x) = f_{DDJ}(x) \circledast f_{PJ}(x) \circledast f_{BUJ}(x) 
@@ -156,7 +156,7 @@ per la parte della definizione delle prime definizioni e delle formule che colle
 \cite{shapiro1984, Paschotta_2007_light_pulses}
 \end{comment}
 Throughout this thesis we worked with pulsed laser sources, whose essential feature is the optical pulse.
-Lasers can operate essentially in two completely organized regimes : the continuous wavelength lasing (CW) or the mode-locked pulsing.
+Lasers can operate essentially in two completely organized regimes : the continuous wavelength regime (CW) or the mode-locked pulsing.
 When the set of longitudinal modes in the laser cavity is maintained in fixed phase and amplitude conditions the output laser beam will be a well defined function of time, realizing a mode-locked pulse train \cite{shapiro1984}.
 
 \subsection{Repetition rate and Pulse duration}
@@ -178,7 +178,7 @@ e(\omega) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} E(t)e^{i\omega t}\, dt
 \label{eq:FT_Electrical}
 \end{equation}
 
-We then define the complex signal $V(t)$ of a plane wave optical pulse, related to the magitude of the electrical field $E(t)$ described in \autoref{eq:ElectricalField} at a fixed point in the space writing the following equations :
+We then define the complex signal $V(t)$ of a plane wave optical pulse, related to the magnitude of the electrical field $E(t)$ described in \autoref{eq:ElectricalField} at a fixed point in the space writing the following equations :
 
 \begin{equation}
 V(t) = \frac{1}{\sqrt{2\pi}}\int_{0}^{+\infty} 2e(\omega)e^{-i\omega t}\, d\omega
@@ -196,7 +196,7 @@ It follows that
 \label{eq:OptPulseFreq}
 \end{align}
 
-These complex functions, namely $V(t)$ as well as $\nu (t)$ are perfect candidates to define the optical pulse in the time and in the frequency domain repectively.
+These complex functions, namely $V(t)$ as well as $\nu (t)$ are perfect candidates to define the optical pulse in the time and in the frequency domain respectively.
 
 Moreover this formulation helps defining the spectral amplitude and the spectral phase associated to the frequency domain formulation.
 In particular, by writing
@@ -236,8 +236,8 @@ According to the Parceval's Theorem the total energy of a pulse is proportional 
 \label{eq:AreaIntensities}
 \end{equation}
 
-This notation clearly enhances the symmetry between the temporal and frequancy descriptions of the pulse.
-Regardless of the description that we wish to present, the optical pulse is completely defined by a phase and an intensity. From the mathematical perspective there is a one-on-one corrispondence between the two different formulation of the intensity profile.
+This notation clearly enhances the symmetry between the temporal and frequency descriptions of the pulse.
+Regardless of the description that we wish to present, the optical pulse is completely defined by a phase and an intensity. From the mathematical perspective there is a one-on-one correspondence between the two different formulation of the intensity profile.
 
 More specifically the general property that regulates the mutual mapping that links the two formulations arises from the Uncertainty Principle, stating that : 
 \begin{equation}
@@ -423,7 +423,7 @@ A closer examination reveals that the histogram is not showing shape of the opti
 \label{Process_TCSPC}
 \end{figure}
 
-An important feature of TCSPC is the complete abscence of losses in the acquisition process. Assuming that the electronics are fast enough, every photon detected is collected into the build up histogram. This high photon efficiency guarantees to this technique a strong signal-to-noise ratio (SNR) for a number $N$ of photons detected.
+An important feature of TCSPC is the complete absence of losses in the acquisition process. Assuming that the electronics are fast enough, every photon detected is collected into the build up histogram. This high photon efficiency guarantees to this technique a strong signal-to-noise ratio (SNR) for a number $N$ of photons detected.
 \begin{equation}
 SNR = \sqrt{N}
 \end{equation}
