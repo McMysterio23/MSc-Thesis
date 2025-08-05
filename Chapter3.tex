@@ -62,6 +62,30 @@ It is worth mentioning that, since we extensively use cables, we cannot exclude 
 
 \section{Data analysis}
 \label{sec:DataAnalysis}
+To understand some of the passages that distinguish the data analysis it is necessary to mention before the experimental procedure that lead us to achieve the raw data that we used for our analysis.
+The data acquisition is divided into two different moments : Pulse refining and data acquisition.
+The first part is focused in defining the shape of the optical pulses. Setting initially the delay to the pulse compressor board, and optimizing for the transmission of the two EOMs leads to the production of our optical pulses.
+
+Subsequently, via software we set up the software to do two separate TCSPC on the two detectors using as reference to start the clock the same pulse pattern with period 15.2 ns that also drives the EOM transmission.
+The Time tagger measures the amount of relative time between the reference signal and the detection.
+Every measurement lasted 15 seconds, and each one is related to a different electrical delay value.
+
+In total, 5 measurements have been saved, corresponding to these delays $d \in \{-10,-25, -35, -50, -60\}$ [ps]
+
+The resulting raw data, corresponding to a single 15-second measurement, consists of two binary files, each representing a stream of time-tagged detection events from one of the two detectors.
+After appropriate reshaping, each file appears as a two-column array: the first column ($t_{\text{rel}}$) indicates the time difference, in picoseconds, between the detection event and the preceding reference signal, while the second column ($T_{\text{clk}}$) provides the index of the reference event to which the detection is associated.
+%Qui inizio a spiegare come abbiamo letto questi dati !!!
+% Finally, every  and is the result \autoref{eq:Timestamps}.
+To correlate each detection event we then need to convert such binary files into actual streams of detections.
+For this reason, since the indeces of the reference events are expressed in units of the FPGA, by multiplying such values for 15200 ps, the repetition period of the laser, we will compute macroscopically the time of the detection event.
+The microscopical difference of time between the detection and the reference, provides finally the missing piece to retrieve the absolute time of the click.
+The resulting stream of detections will be composed by values computed as shown in \autoref{eq:Timestamps}.
+
+\begin{equation}
+    t_{\text{abs}} = i \cdot T_{\text{clk}} + t_{\text{rel}}
+\label{eq:Timestamps}
+\end{equation}
+
 
 \begin{figure}[hbtp]
 \centering
