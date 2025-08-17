@@ -79,13 +79,15 @@ After appropriate reshaping, each file appears as a two-column array: the first 
 To correlate each detection event we then need to convert such binary files into actual streams of detections.
 For this reason, since the indeces of the reference events are expressed in units of the FPGA, by multiplying such values for 15200 ps, the repetition period of the laser, we will compute macroscopically the time of the detection event.
 The microscopical difference of time between the detection and the reference, provides finally the missing piece to retrieve the absolute time of the click.
-The resulting stream of detections will be composed by values computed as shown in \autoref{eq:Timestamps}.
+The resulting stream of detections is then composed by values computed as shown in \autoref{eq:Timestamps}.
 
 \begin{equation}
     t_{\text{abs}} = i \cdot T_{\text{clk}} + t_{\text{rel}}
 \label{eq:Timestamps}
 \end{equation}
 
+\begin{comment}
+These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned onto an histogram, assuming a certain binsize. By these means there are two main variables, that determine the quality of the data collected : $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
 
 \begin{figure}[hbtp]
 \centering
@@ -94,12 +96,47 @@ The resulting stream of detections will be composed by values computed as shown 
 \label{CoincidenceCounts}
 \end{figure}
 
+\end{comment}
 
 
 \subsection{Data processing pipeline}
 \label{subsec:Pipeline}
-Ciaone
 
+
+
+These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned onto an histogram, assuming a certain binsize. By these means there are two main variables, that determine the quality of the data collected : $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
+Since these are count-based histograms, the error related to each one of these coincidences corresponds to the square root of the number of counts detected.
+\autoref{CoincidenceCounts} shows how such coincidences are displayed over the shift time of arrival : the periodic nature of such peaks reflects the periodicity of the optical pulses.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.75\textwidth]{CoincidenceExample.jpg}
+\caption{Plot showing coincidence counts versus time, expressed in picoseconds. Image related to a measurement with a bias of -10 ps, correspoding to an independently measured duration of the pulse of 65.1 ps}
+\label{CoincidenceCounts}
+\end{figure}
+
+
+
+At this precise point, we implement the procedure of normalization explained in  \autoref{subs:HBT}, more specifically using \autoref{Martinez_g2}.
+
+The key point of this part is to analyse the $g^2 (\tau)$ peaks, automatizing the simultaneous fit of every one of them.
+Left and right boundaries of the fitting intervals related to each peak were reconstructed starting from an initial pair, observed graphically.
+All the others were retrieved adding or subtracting multiples of the repetition period of the pulsed laser source, that we remember being 15.2 ns.
+\autoref{FittingIMG} (a) shows how using dashed and non dashed red lines, the fitting intervals are identified among the x-axis.
+
+The gaussian function used to fit the $g^2 (\tau)$ peaks is \autoref{GaussianFit}, where the relation between the FWHM and the sigma is portrayed in \autoref{eqFWHM}. 
+\begin{equation}
+y(x) = A \, \exp\!\left( -\frac{1}{2} \left( \frac{x - d}{\sigma} \right)^{2} \right) + b
+\label{GaussianFit}
+\end{equation}
+
+\begin{equation}
+\sigma = \frac{\mathrm{FWHM}}{2 \sqrt{2 \ln 2}}
+\label{eqFWHM}
+\end{equation}
+
+\autoref{FittingIMG} (b) shows one of the resulting gaussian fits.
+The resulting parameters resulting from each one of these fits will then be saved into an array of pandas dataframes, ready for any further computation.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{NCountsFitting.jpg}
@@ -107,16 +144,36 @@ Ciaone
 \label{FittingIMG}
 \end{figure}
 
-
+%\newpage
 \subsection{Central peak identification}
 \label{subsec:CentralPeakId}
-Ciaone
+At the current stage, the peaks are not displayed over the correct x axis, this is because we just limited our analysis to the fit of the $g^2 (\tau)$ peaks. We still have to identify the Zero-time delay peak, that will be later also referenced as the  $\Delta \tau = 0$ peak.
+
+The main intuition towards the identification of this peculiar peak came from \autoref{FWHMvsTauSingle}.
+In this image are displayed the FWHMs of all the $g^2 (\tau)$ peaks versus the position in the x axis.
+Despite the presence of a vast number of peaks having on average the same width, there are two clear candidates that exhibit a significant less value.
+Among these two candidates we identify as the Zero-time delay peak the one with the least intense width.
+Subsequently, we shifted the x axis for the value of this peak, in order to retrieve the desired scenario where for zero time delay there is the actual zero time delay peak.
+
+
+
+\begin{comment}
+Qui ci sarebbe da dire che io nel codice a questo punto faccio un ultimo giro di fit sugli array finalmente corretti per la coordinata temporale del picco centrale.
+\end{comment}
+
+
+%\autoref{FWHMvsTauSingle}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{FWHMvsTAU_Single.jpg}
-\caption{PLot of FWHM vs tau coordinates of every peak fitted}
+\caption{Plot representing the FWHMs over the time shift coordinates $\tau$ of every peak fitted for one single measurement file. In the lower part of the center of the image can be notices two clear minima points.}
 \label{FWHMvsTauSingle}
 \end{figure}
+
+%Aggiungere un paio di frasi per motivare la scelta in questo modo.
+%Sottolinea che i picchi contengono informazioni sulla auto correlazione a diverse scale di distanza.
+%Appare più che plausibile che il picco a zero delay mostri una minore larghezza, in quanto non risente già 
+%del jitter della FPGA che inizia inevitabilmente a comparire poi...
 
 \section{Results and Discussion}
 \label{EOMresults}
