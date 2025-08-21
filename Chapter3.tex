@@ -155,6 +155,8 @@ Despite the presence of a vast number of peaks having on average the same width,
 Among these two candidates we identify as the Zero-time delay peak the one with the least intense width.
 Subsequently, we shifted the x axis for the value of this peak, in order to retrieve the desired scenario where for zero time delay there is the actual zero time delay peak.
 
+The key reason behind this choice lies in the intrinsic meaning of this central peak, resulting directly from the coincidence counts at zero periods of distance. This motivates what we see in the plot where only two points show lower FWHM values, while the others do show an higher average value.
+Technically we would expect only one clear minima, not two, but we think that the second one arises as a consequence of the use of two cascaded EOMs.
 
 
 \begin{comment}
@@ -177,25 +179,52 @@ Qui ci sarebbe da dire che io nel codice a questo punto faccio un ultimo giro di
 
 \section{Results and Discussion}
 \label{EOMresults}
-ciaone
+Let us now discuss the results of this first part of the project by showing a selection of plots containing datas from 5 different measurements together.
+Of these different measurements, obtained by varying the bias value on the pulse compressor board, we do have an independent measure of the resulting optical pulses. A proper legend has been added to each one of the plots to give notice to the duration values of these optical pulses.
+
+\autoref{FWHMvsTauGeneral} presents a broader version of the plot described when we first introduced the zero time delay identification, this time with 5 different measurements. For each measurement minima points can be seen. 
+Also, we notice how the average value of the FWHM per single population decreases with the decrease of the optical length of the pulses. It is worth mentioning, in this sense that the difference between the average FWHM value that we see in the main plot and the width of the pulse is caused primarily by the jitter of the system.
+The contribution of the jitter increases with shorter pulses : The origin of this effect is still unclear.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{FWHMvsTAU_ALL_Version2.jpg}
-\caption{Ciaone}
+\caption{Measured FWHMs over the shift $\tau$ from the zero-delay peak. The colors represent the 5 different measurements obtained varying the bias value on the pulse compressor board. An independent measure of the corresponding duration of the pulses for each color is located in the legend on the right part of the image. }
 \label{FWHMvsTauGeneral}
 \end{figure}
+
+Subsequently, we focused on the analysis of the variations of the widths of the peaks. According to the reasons explained previously behind the identification of the zero delay peak, we chose as reference for this study of the variations the zero delay peak.
+On this behalf we displayed in \autoref{DeltaFWHMvsPERIOD_General} on the y axis these variations defined according to \autoref{DELTAEXP}
+
+\begin{equation}
+\Delta FWHM (N) = FWHM(N) - FWHM(0) 
+\label{DELTAEXP}
+\end{equation}
+In particular with the letter "N", we refer to the number of periods of distance from the central peak. With this formulation the width variation related to the peak located at negative 15 periods from the central reference is displayed at  $x = -15$ on the x-axis.
+
+Furthermore, \autoref{DeltaFWHMvsPERIOD_ZOOM} is a zoomed in version of the bigger \autoref{DeltaFWHMvsPERIOD_General}, that keeps the color scheme adopted for this section.
+
+About these two images, depicting the variations of the FWHMs over the period number, some observations can be made :
+
+\begin{itemize}
+\item $\Delta FWHM(N)$ is smallest for $n \pm 1$
+\item Outside $n \pm 1$ the variations gets larger and increase steadily over an interval of 10s of periods
+\item For measurements related to longer pulses the variation appears to be smaller		
+\end{itemize}
+
+
+%Aggiungere qui le conclusioni che trovi nel documento condiviso
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{DeltaFWHMvsPeriods.jpg}
-\caption{Ciaone}
+\caption{Measured FWHM variations computed with respect of the central peak, chose as reference for its intrinsic properties. The results are plotted at the specific coordinate on the x-axis related to the peak to which the variation is related, according to \autoref{DELTAEXP}. On the Left side there is a legend that relates the colors of the points in the plot with an independent measure of the pulses being for each experiment.}
 \label{DeltaFWHMvsPERIOD_General}
 \end{figure}
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{DeltaFWHMvsPeriods_ZOOM.jpg}
-\caption{Ciaone}
+\caption{Zoomed in version of \autoref{DeltaFWHMvsPERIOD_General}, limited over a range of $\pm 25$ periods from the central zero-delay peak. The difference between the first two points from the center and the others is here more evident. There is not value displayed in the origin of the axis, for each one of the measurenents. We chose to not display it with purpose, since according to \autoref{DELTAEXP} it would have resulted always in a null value.}
 \label{DeltaFWHMvsPERIOD_ZOOM}
 \end{figure}
