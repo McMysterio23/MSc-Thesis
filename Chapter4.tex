@@ -36,9 +36,21 @@ An overview of the experimental setup is shown in \autoref{TisaSetup}. The sketc
 
 \section{Unwanted Side Peaks in HBT and TCSPC measurements}
 \label{cpp:Initial-khaos}
-Up to this point of the treatment we shall start discussing the data from the measurements.
-The first measurement has been carried out wit
+Up to this point in the discussion, we can now start presenting the data from the measurements.  
+The first measurement was taken with an exposure time of 10~s, under conditions of approximately 3~MCounts detected. Regardless of the divided SYNC signal sent to the ID1000 at $\sim 20$~MHz, the actual repetition rate of the pulsed laser was 80~MHz.  
 
+Assuming output pulses of $\approx 100$~fs, as discussed in the previous section, the fiber dispersion broadens them to $\approx 23$~ps at the SNSPD input. The resulting histograms are shown in \autoref{Khaos}, where each main peak is shifted to the center of the time axis, and the counts are displayed on a logarithmic y-axis.  
+
+From these histograms, two key observations can be made:  
+\begin{itemize}
+	\item Although very similar overall, Detector~3 registers slightly more events than Detector~2, as indicated by the red main peak being $18.6\%$ higher than the black one;
+	\item Side peaks appear at different relative times for the two detectors, but the $-500$~ps peak is consistently present across all four histograms.
+\end{itemize}
+
+From this first inspection, the conclusion is clear: before proceeding with further measurements, it is necessary to better characterize the origin of the side peaks observed here.
+
+
+%with a non negligible number of side peaks appearing, it was necessary to take a step back to try assess the
 
 
 \begin{comment}
@@ -51,24 +63,59 @@ The resulting histograms are then post-processed to shift the main peak in the z
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{Khaos.jpg}
-\caption{Ciaone}
+\caption{Measured TCSPC and HBT Histograms, post processed to display the main peak in the origin of the time axis to ease confrontation. Counts are displayed in the y-axis using a logarithmic scale. The two TCSPC histograms related to Detector~2 and Detector~3 are represented in black and red respectively. The two HBT histograms are displayed in green and blue.}
 \label{Khaos}
 \end{figure}
 
 \section{Partly retrieving side peaks in HBT from coordinates of TCSPC peaks}
 \label{cpp:Reconstructsides}
+Explaining side peaks of a set of TCSPC and HBT histograms can be a difficult task. 
+For this reason, a scenario like this one has to be treated carefully, starting from the basic informations that we know from the histograms.
+According to what has been presented in \autoref{sec:Def-Techniques} the histograms arising from the two start/stop HBT  are strictly related to what we see in the two TCSPC plots related to just one detector.
+For this reason, if we focus in \autoref{Khaos} to the total number of side peaks, we can notice how the two HBT are more affected by side peaks since they directly amplify the side peaks of the individual detectors that we see in the red and black plots. % NEEDS REFINEMENT, doesn't sound good, maybe it's better to have two separate sentences !!!
 
+What we observe in \autoref{Khaos} can be explained mathematically by Eqs.~ \ref{TCSPC_convo} and \ref{HBT_convo} as follows :
+\begin{equation}
+TCSPC_{Det.2}(t) = I(t) \circledast IRF_{Det.2}(t)
+\label{TCSPC_convo}
+\end{equation}
+
+\begin{equation}
+HBT_{2,3}(t) = I(t) \circledast IRF_{Det.2}(t) \circledast IRF_{Det.3}(t)
+\label{HBT_convo}
+\end{equation}
+
+The twofold convolution in \autoref{HBT_convo} makes it possible to qualitatively identify the HBT side peaks from the coordinates of the summits observed in the two separate TCSPC histograms.
+Although qualitative, this procedure requires the time coordinates of every peak with reasonable accuracy.
+A natural starting point is therefore to label each peak; from now on we adopt the labeling convention introduced in \autoref{Khaos_labeled}.
+The corresponding numerical values are summarized in \autoref{tabellonadeipicchi}.
+
+With this framework in place, the next step is to compute sums and differences of the C- and D-class peak coordinates, collecting the valid combinations in a list.
+Among the several side peaks observed, four HBT peaks can be successfully identified through this procedure:
+\begin{itemize}
+\item $D0 - C1$ corresponds to the position of $A2$
+\item $C1 - D0$ corresponds to the position of $B2$
+\item $D1 - C0$ corresponds to the position of $A1$
+\item $C0 - D1$ corresponds to the position of $B1$
+\item The absence of $C4$ accounts for the reduced height of $A3$ relative to $B4$
+\end{itemize}
+These four identifications also serve as a direct confirmation that, by inverting the operations, one retrieves the positions of the corresponding peaks in the time-reversed HBT histogram. The hierarchical convention chosen for the numbering of the labels reinforces this interpretation: in both of the first two operations the resulting index is the same (2), and the same scheme applies to the third and fourth operations.
+
+
+
+%Due to the convolution operator, these equations allow us to relate the peaks of the HBT histograms to the relative time coordinates of the TCSPC peaks.
+%The main reason behind the possibility of reaching an explanation of the HBT peaks, from the TCSPC ones lies in the convolution operator, appearing twice, that relates the two detectors in 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{Khaos_Labeled.jpg}
-\caption{Ciaone}
+\caption{Labeled version of \autoref{Khaos}. Each peak is labeled using the same color as its corresponding histogram. Numbers are assigned to indicate hierarchical relations between side peaks of the same color. The central peak is not labeled, but within this scheme it would correspond to the index zero.}
 \label{Khaos_labeled}
 \end{figure}
 
 
 \begin{table}[h!]
 \centering
-\caption*{\textbf{Detected position of the peaks}}
+\caption{\textbf{Detected position of the peaks}}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{
 >{\centering\arraybackslash}m{1.5cm} 
@@ -90,6 +137,7 @@ The resulting histograms are then post-processed to shift the main peak in the z
 \cellcolor{blue!50} \textcolor{white}{\textbf{4}} & -502 & 503  & n.d.  & -500  \\
 \rowcolor{white}
 \end{tabular}
+\label{tabellonadeipicchi}
 \end{table}
 
 
