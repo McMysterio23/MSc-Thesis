@@ -204,7 +204,99 @@ As seen in \autoref{TrickShot}, by looking at the images we significantly modifi
 \end{comment}
 
 
+%\subsection{Discussion of the new measurements}
+%After refining the new thresholds, a new and final set of measurements was taken.
+%In this final section we will assess whether the choice of refining the electronic thresholds of the ID1000 is the decisive change needed to remove the undesired side peaks appearing in \autoref{Khaos}, or if otherwise there are no significant improvements.
+%
+%The final measurement was taken with a long exposure time of 500~s.
+%Minimizing the impact of the noise in count-based histograms is a strategy that finds its roots in the intrinsic nature of the noise in the TCSPC and HBT histograms.
+%As we introduced also in \autoref{subs:TCSPC}, the prevalent noise of these histograms scales with the square root of the number of counts, as also referenced in \autoref{SNR_TCSPC}.
+%The signal itself scales instead like the number of counts itself. For this reason, longer exposure times mitigate the disruption caused by the shot noise, unveiling parts that because of low counts were highly affected by noise.
+%Furthermore, external light coupled in the optical fibers was minimized turning off the lights, and the final count rates corresponded to $\approx 240$~kHz  for both the two detectors.
+%The final histogram obtained is shown in \autoref{RefinedMeasurement}, where the usual color scheme is maintained (black and red for the two TCSPC; blue and green for the two HBT).
+%Focusing on the image some key observations can be made :
+%\begin{itemize}
+%\item The strong similarity between the height of the two main peaks reflects the similar count rates mentioned above;
+%\item The characterization of the main peak is substantially improved, much less side peaks are now present.
+%\item The Red TCSPC, corresponding to the third detector still exhibits a persistent side peak, separated from the main one at approximately +500~ps
+%\item Both of the main peaks of the two TCSPC histograms do not have similar tails. This particularly applies to the black one, where the distortion on the right tail is particularly evident.
+%\item The second peak at +500~ps does not appear for the black histogram. 
+%\end{itemize}
+%
+%
+%
+%In conclusion, was refining the electronic threshold an effective solution to remove the side peaks ?
+%On behalf of the above observations, it is not possible to assess that the cause of the multiple side peaks appearing in \autoref{Khaos} was solely the use of wrong electronic thresholds.
+%Though the characterization of the main peak has significantly improved, there is still room for improvement for both of the detectors.
+%In particular for the third detector, it is to be further assessed the underlying reason for the presence of the separate peak at +500~ps after the main peak.
+
+
 \subsection{Discussion of the new measurements}
+After refining the electronic thresholds, a new and final set of measurements was taken.
+In this section we assess whether this adjustment was the decisive change needed to remove the undesired side peaks observed in \autoref{Khaos}, or whether significant issues remain.
+
+The final measurement was taken with a long exposure time of 500~s.
+Since shot noise scales as the square root of the number of counts, while the signal itself scales linearly, longer exposure times improve the signal-to-noise ratio and reveal weaker structures otherwise buried in noise, as discussed in \autoref{subs:TCSPC} and \autoref{SNR_TCSPC}.
+Furthermore, external light coupled into the optical fibers was minimized by switching off all laboratory lights, and the final count rates corresponded to $\approx 240$~kHz for both detectors.
+The resulting histogram is shown in \autoref{RefinedMeasurement}, where the usual color scheme is maintained (black and red for the two TCSPC; blue and green for the two HBT).
+
+From \autoref{RefinedMeasurement}, several key observations emerge:
+\begin{itemize}
+\item The strong similarity between the heights of the two main peaks reflects the nearly identical count rates.
+\item The characterization of the main peak is substantially improved, and most side peaks are now suppressed.
+\item Detector~3 (red TCSPC) still exhibits a persistent side peak at about +500~ps.
+\item The main peaks of the two TCSPC histograms exhibit dissimilar tails; in particular, the right tail of the black trace shows a clear distortion.
+\item The side peak at +500~ps does not appear in the black histogram.
+\end{itemize}
+
+In conclusion, refining the electronic threshold proved partially effective in reducing the undesired side peaks, but it was not sufficient to fully resolve the issue. 
+Although the main peak characterization has improved significantly, the persistence of a secondary peak in the red TCSPC histogram and the distortions in the black trace indicate that further changes to the setup are necessary. 
+The next step will therefore focus on additional modifications aimed at eliminating these residual artifacts and achieving clean TCSPC and HBT histograms.
+
+
+
+
+
+%\begin{figure}[hbtp]
+%\centering
+%\includegraphics[width=1\textwidth]{Refined.jpg}
+%\caption{Measured TCSPC and HBT Histograms corresponding to the measurement with the updated threshold values, specifically chosen to enhance the signal to noise ratio and remove undesired side peaks. Every peak has been shifted to appear in the center of the axis, and the counts are displayed in a logarithmic vertical scale. }
+%\label{RefinedMeasurement}
+%\end{figure}
+
+
+%This final step is crucial to assess whether better thresholds actually improve the clarity of the main peak, maybe also solving completely the issue of the undesired side peaks, or instead does not make any difference.
+
+
+\begin{comment}
+Cose da dire qui in questa parte di tesi : 
+1 ) Descrivere le condizioni in cui abbiamo eseguito queste ultime e finali misure
+2 ) Fare le osservazioni che abbiamo scritto nel documento condiviso con anche W.
+3 ) Trarre le conclusioni per quanto riguarda questa parte di tesi.
+
+
+Svolgimento di queste parti :
+Parte 1 )  [Se teniamo l'idea di presentare solo l'immagine con il countrate maggiore]
+ a ) Countrate ai detector
+ b ) Breve riferimento alla sezione precedente per definire le threshold utilizzate per questa parte
+ c ) Tempo di esposizione, con conseguente  commento sulla quantità di noise che si vede dall'immagine che dovrebbe essere non esagerata per via per l'appunto della lunghezza
+ d ) Condizioni laboratoriali in cui abbiamo effettuato le misure
+ 
+ Parte 2 ) 
+ a ) The two TCSPC have significantly improved upon the refinement of the thresholds
+ b ) Det. 3 still shows a persistent separated peak at +500ps. this automatically creates also a small bump at -500ps in the det3 vs det2 HBT. completely understandable, and also in the det2 vs det 3 at exactly 500ps
+ c ) The Det. 2 TCSPC has the right tail highly deformed by what appears to be an underlying side peak whose center could be something around 200ps ?!?!?!?!?
+ d ) Also Detector 3 has the right tail deformed, but this time significantly less than the black's deformation.
+ 
+ Parte 3 ) 
+ Refinining better thresholds has significantly improved the quality of our measurements, making now possible to study better the main peak.
+ Though the situation has significantly improved, DET3 's TCSPC still shows a persistent +500ps bump, as well as the black depicting a strongly deformed right tail.
+ 
+ New thresholds have significantly improved the situation, though it appears that this is not totally resolutive.
+\end{comment}
+
+
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{Refined.jpg}
