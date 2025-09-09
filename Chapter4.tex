@@ -72,10 +72,9 @@ The resulting histograms are then post-processed to shift the main peak in the z
 
 \section{Partly retrieving side peaks in HBT from coordinates of TCSPC peaks}
 \label{cpp:Reconstructsides}
-Explaining side peaks of a set of TCSPC and HBT histograms can be a difficult task. 
-For this reason, a scenario like this one has to be treated carefully, starting from the basic informations that we know from the histograms.
-According to what has been presented in \autoref{sec:Def-Techniques} the histograms arising from the two start/stop HBT  are strictly related to what we see in the two TCSPC plots related to just one detector.
-For this reason, if we focus in \autoref{Khaos} to the total number of side peaks, we can notice how the two HBT are more affected by side peaks since they directly amplify the side peaks of the individual detectors that we see in the red and black plots. % NEEDS REFINEMENT, doesn't sound good, maybe it's better to have two separate sentences !!!
+Explaining side peaks of a set of TCSPC and HBT histograms can be challenging. 
+This scenario needs to be approached carefully, starting from the basic information available in the histograms. As discussed in \autoref{sec:Def-Techniques}, the histograms from the two start/stop HBT measurements are directly related to the TCSPC plots of the individual detectors.
+Focusing on \autoref{Khaos}, we notice that the total number of side peaks is higher in the HBT measurements. This occurs because the HBT setup amplifies the side peaks already present in the TCSPC data from the individual detectors, as seen in the red and black plots. 
 
 What we observe in \autoref{Khaos} can be explained mathematically by Eqs.~ \ref{TCSPC_convo} and \ref{HBT_convo} as follows :
 \begin{equation}
