@@ -28,13 +28,13 @@ For the specifications of the other components we remind to the article of the o
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{EOMsetupBIG.jpg}
-\caption{Schematic representation of the EOM based experimental setup}
+\caption{Schematic representation of the EOM based experimental setup. \cite{IlseThesis2023}}
 \label{EOM_Setup_BIG}
 \end{figure}
 It is worth noting that in \autoref{EOM_Setup_BIG} the electro-optic modulation and the electronics that drives it, are only minimally shown. \autoref{EOM_PulseGen} provides a more detailed insight on what is actually driving the pulse generation.
 The first three blocks from the top of the image represent the high speed electronics that generates the driving signal of the two EOMs.
 At the very first stage, a field-programmable gate array (FPGA) generates a trigger signal in the form of a pulse pattern, that is passed to the pulse generator card. This system cam be operated in two regimes. For this project we specifically use the fast pulse generator, with a resolution of 1 ns and a configurable repetition rate ranging from 8 MHz to 500 MHz.
-In our case the FPGA generates 1ns long pulses at the desired repetition rate of around 65MHz, corresponding to a repetition period of 15.2 ns.  
+In our case the FPGA generates 1ns long pulses at the desired repetition rate of around 65~MHz, corresponding to a repetition period of 15.2 ns.  
 At this point, the signal is split and sent to two programmable delay lines with a resolution of 5 ps; a delay is applied to only one of the copies.
 These two refined signals are combined with a 14-Gbps AND gate to obtain the customized pulse pattern whose width is adjustable based on the user-defined bias values for the programmable delay lines that we mentioned earlier.
 Subsequently, the outputs of the pulse compressor board are the two pulse patterns resulting from a XOR port fed with the previous signal and a constant reference signal.
@@ -178,7 +178,7 @@ Qui ci sarebbe da dire che io nel codice a questo punto faccio un ultimo giro di
 %Appare più che plausibile che il picco a zero delay mostri una minore larghezza, in quanto non risente già 
 %del jitter della FPGA che inizia inevitabilmente a comparire poi...
 
-\section{Results and Discussion}
+\section{Results and discussion}
 \label{EOMresults}
 Let us now discuss the results of this first part of the project by showing a selection of plots containing datas from 5 different measurements together.
 Of these different measurements, obtained by varying the bias value on the pulse compressor board, we do have an independent measure of the resulting optical pulses. A proper legend has been added to each one of the plots to give notice to the duration values of these optical pulses.
@@ -209,7 +209,7 @@ About these two images, depicting the variations of the FWHMs over the period nu
 
 \begin{itemize}
 \item $\Delta FWHM(N)$ is smallest for $n \pm 1$
-\item Outside $n \pm 1$ the variations gets larger and increase steadily over an interval of 10s of periods
+\item Outside $n \pm 1$ the variations gets larger and increase steadily over intervals of 10 periods
 \item For measurements related to longer pulses the variation is smaller	
 \end{itemize}
 

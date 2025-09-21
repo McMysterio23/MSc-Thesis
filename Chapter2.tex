@@ -10,7 +10,7 @@ Finally, \autoref{sec:Def-Techniques} offers the theoretical foundation behind t
 
 
 
-\section{Timing Jitter}
+\section{Timing jitter}
 \label{Sec:Def-Jitter}
 
 To better understand what jitter means in the context of optical pulses, we must first give the general definition.
@@ -46,7 +46,7 @@ To investigate the optical jitter affecting a pulsed laser source, it is first e
 
 Finally, \autoref{sec:Def-Techniques} outlines the theoretical background of the experimental techniques employed throughout this work, serving as a conceptual bridge between the physical principles and the measurements presented in the following chapters.
 
-\section{Timing Jitter}
+\section{Timing jitter}
 \label{Sec:Def-Jitter}
 
 To understand jitter in the context of optical pulses, we must begin with its general definition.
@@ -117,8 +117,8 @@ f_{TJ}(x) = f_{DJ}(x) \circledast f_{RJ}(x)
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{RandomCrosstalk}
-\caption{(a)Visual representation of the concept of stochastic contribution to timing jitter caused by RJ, here represented with its relative pdf.
-(b) Sketch representing the timing jitter caused by an external crosstalk aggressor signal, striking the reference signal and causing the detection event to shift in time because of that.}
+\caption{(a)Visual representation of the concept of stochastic contribution to timing jitter caused by RJ, here represented with its relative pdf. \cite{jitterwaveform2017}
+(b) Sketch representing the timing jitter caused by an external crosstalk aggressor signal, striking the reference signal and causing the detection event to shift in time because of that. \cite{Crosstalk_Liao}}
 \label{RandomIMG}
 \end{figure}
 
@@ -159,7 +159,7 @@ Throughout this thesis we worked with pulsed laser sources, whose essential feat
 Lasers can operate essentially in two completely organized regimes : the continuous wavelength regime (CW) or the mode-locked pulsing.
 When the set of longitudinal modes in the laser cavity is maintained in fixed phase and amplitude conditions the output laser beam will be a well defined function of time, realizing a mode-locked pulse train \cite{shapiro1984}.
 
-\subsection{Repetition rate and Pulse duration}
+\subsection{Repetition rate and pulse duration}
 Among the basic properties of optical pulses, the repetition rate $f_{\text{rep}}$ and the optical pulse duration are two key parameters that should be mentioned before any mathematical derivation.
 
 The pulse repetition rate, sometimes also called pulse repetition frequency, of a pulsed laser source is defined as the number of emitted pulses in a second, or alternatively the inverse temporal pulse spacing \cite{RP2005_rep_rate}.
@@ -210,7 +210,7 @@ we will recognize $a(\omega)$ as the spectral amplitude and $\phi (\omega)$ as t
 When the pulse bandwidth $\Delta \omega$ is narrow compared to the mean optical frequency $\omega _0$ we can then write 
 
 \begin{equation}
-    V(t)=A(t)e^{i(\Phi (t)-\omega _{0} t )}
+    V(t)=A(t)e^{i(\Phi (t)-\omega _{0} t )}.
 \label{eq:OptSynthetic}
 \end{equation}
 
@@ -244,7 +244,7 @@ More specifically the general property that regulates the mutual mapping that li
     \frac{(\Delta \omega \Delta t)}{2\pi} \ge K
 \label{eq:Uncertainty}
 \end{equation}
-Where K is by constant value whose value depends on the shapes of the two intensity profiles.
+The value of the constant K is defined by the shapes of the two intensity profiles.
 
 Usually in the context of pulsed laser source, pulses can be described as "Transform-limited" or also "bandwidth-limited" : this only happens when given a certain bandwidth in the temporal domain it is produced the shortest possible pulse obtainable.
 In such a case the actual duration is 
