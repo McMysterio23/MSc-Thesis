@@ -62,7 +62,7 @@ In this thesis, we focus on jitter as it appears in optical pulses, which serve 
 Timing jitter can be broadly classified into two main categories: \emph{deterministic jitter (DJ)} and \emph{random jitter (RJ)}. 
 %Deterministic jitter arises from predictable, repeatable sources such as crosstalk, power supply noise, or duty cycle distortion. In contrast, random jitter originates from stochastic processes, such as thermal noise or quantum fluctuations in detection, and is inherently unbounded over long timescales.
 We identify with the name Random jitter (RJ) all those jitter sources that don't allow successive references to be systematically determined, and this is the reason why a statistical treatment is needed.
-By applying the Central limit theory, RJ can be treated as a mean zero distortion of the waveform, with an unbounded underlying gaussian probability density function $f_{RJ}(x)$.
+By applying the Central limit theory, RJ can be treated as a mean zero distortion of the waveform, with an unbounded underlying Gaussian probability density function $f_{RJ}(x)$.
 
 \begin{equation}
 f_{RJ}(x) = \frac{1}{\sigma \sqrt{2 \pi }}e^{-\frac{x^2}{2 \sigma ^2}}
@@ -151,7 +151,7 @@ The pulse repetition rate, sometimes also called pulse repetition frequency, of 
 The temporal duration, also referred as pulse width, of an optical pulse is often characterized by its Full Width Half-Magnitude (FWHM). While this definition is widely accepted, for some specific cases (e.g. solitons described by a $sech^2$ function) it is preferred the use of a duration parameter $\tau$ that is approximately the ratio between the FWHM and a conversion parameter valued 1.726 \cite{RP2005_duration}. 
 
 \subsection{Mathematical derivation of the temporal and spectral intensity functions}
-In order to define even more the features of the optical pulses we should first define a pair of Fourier integrals in the time ($t$) and frequency ($\omega$) domains  :
+In order to define even more the features of the optical pulses we should first define a pair of Fourier integrals in the time ($t$) and frequency ($\omega$) domains:
 \begin{equation}
 E(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty} e(\omega)e^{-i\omega t}\, d\omega
 \label{eq:ElectricalField}
@@ -220,7 +220,7 @@ According to the Parceval's Theorem the total energy of a pulse is proportional 
 \]
 This notation clearly enhances the symmetry between the temporal and frequency descriptions of the pulse.
 Regardless of the description that we wish to present, the optical pulse is completely defined by a phase and an intensity. From the mathematical perspective there is a one-on-one correspondence between the two different formulation of the intensity profile.
-More specifically the general property that regulates the mutual mapping that links the two formulations arises from the uncertainty principle, stating that : 
+More specifically the general property that regulates the mutual mapping that links the two formulations arises from the uncertainty principle, stating that: 
 \begin{equation}
     \frac{(\Delta \omega \Delta t)}{2\pi} \ge K
 \label{eq:Uncertainty}
@@ -240,7 +240,7 @@ Let us introduce a basic example to conclude the treatment: The Gaussian-shaped 
 \label{eq:exampleSpectral}
 \end{equation}
 The parameter $\alpha$ regulates the width of the distribution.
-In this scenario also in the temporal domain the intensity has the shape of a gaussian 
+In this scenario also in the temporal domain the intensity has the shape of a Gaussian 
 \begin{equation}
     I(t)=\alpha e^{-\alpha (t-t_0)^2}
 \label{eq:exampleTemporal}
@@ -311,7 +311,7 @@ Section \ref{subs:TCSPC} includes a description of the functioning principle of 
 Using an SNSPD requires to take into account key features like the timing jitter, the detection probability as well as the detector deadtime.
 By definition the deadtime is the time required by the nanowire to recover from the last detection in order to be ready to receive the next one. 
 The order of magnitude of this parameter is generally of nanoseconds: in this scenario a useful strategy is to split the incoming pulsed light into two different fibers, with the use of a 50:50 fiber directional coupler, to carry out detections with two detectors.
-This type of experimental setup belongs to the name of two english scientists, Hanbury Brown and Richard Twiss, who developed this intensity interferometer to study the size of Sirius in the mid '50s \cite{1956Natur.178.1046H}.
+This type of experimental setup belongs to the name of two english scientists, Hanbury Brown and Richard Twiss, who developed this intensity interferometer to study the size of Sirius in the mid '50s \cite{Brown:1956zza}.
 This experimental setup can be used either in a Start/Stop mode, collecting an histogram of the relative times measured between the \emph{START} and consecutive \emph{STOP} detections of the two detectors, or otherwise by correlating the two streams of clicks. %Richiede manutenzione questa frase !!!!
 In both these cases the final goal is the refinement of the second-order correlation function $g^{2}(\tau)$, with the key difference being that in the latter scenario the resulting coincidences histogram is not limited to consecutive detections like in the first, limited, case.
 $g^{2}(\tau)$ quantifies the intensity fluctuations in the correlated signal and the classical formulation is 
@@ -329,7 +329,7 @@ Using photon counting detectors means that the intensities displayed in \autoref
 g^{(2)}(\tau) = \frac{\langle n_2(t) n_3(t + \tau) \rangle}{\langle n_2(t) \rangle \langle n_3(t + \tau) \rangle}
 \label{Discrete_g2}
 \end{equation}
-This equation would be perfect in presence of a photon number resolving detector, but this is not the case with the SNSPD that we use, causing the values $n_i(t) \in \{0,1\}$ regardless of the intensity of the pulse reaching the detector at that specific time.
+This equation would be perfect in presence of a photon number resolving detector, but this is not the case with the SNSPD that we use, causing the values $n_i(t) \in \{0,1\}$ regardless of the intensity of the pulse reaching the detector at that specific time. Since we are operating the detector in conditions of low count rates we are dealing with a low probability of detection, causing these values to be zero in most of the cases.
 Assuming an initial detection at time $t$, computing the number of photons collected after a delay $\tau$ and binning these values with a step $\delta \tau$ we are computing what will be referred in this thesis as \emph{coincidence counts}.
 \autoref{Discrete_g2} will then be expressed using discrete Riemann Sums, as shown in \autoref{Riemann_g2}.
 
@@ -343,7 +343,7 @@ g^{(2)}(\tau) &=
 \label{Martinez_g2}
 \end{align}
 The summation symbols operate onto the set of $\delta \tau$ bins, while $N=\frac{T_{acq}}{\delta \tau}$ is the total number of bins.
-The final expression introduces $R_2$ and $R_3$ as the count rates of the two detectors, recalling the synthetic formulation introduced by Martínez et al \cite{PhysRevB.94.121405}.
+The final expression introduces $R_2$ and $R_3$ as the count rates of the two detectors, together with $J(\tau)$ defined as the number of photons detected at time $\tau$, provided that a photon is detected at time $t=0$ \cite{PhysRevB.94.121405}.
 
 
 %In this scenario the actual intensities measured at the time t are expressed by the number of counts in the specific temporal binsize, realizing 
@@ -370,11 +370,9 @@ The final expression introduces $R_2$ and $R_3$ as the count rates of the two de
 \end{comment}
 
 %The time-correlated single photon counting 
-At the basis of the Time-correlated single photon counting technique, usually referred with the name TCSPC, there is the idea to reconstruct the shape of the optical pulse of a pulsed light source.
-Key ingredients to achieve this result are a single photon detector (SPD) with enough temporal resolution to resolve the temporal frequency of the light together with a time-tagger for the measurement of time delays over a large number of iterations.
-
+At the basis of the Time-correlated single photon counting technique, usually referred with the name TCSPC, there is the idea to reconstruct the shape of the optical pulse of a mode-locked light source.
+Key ingredients to achieve this result are a single photon detector (SPD) with enough temporal resolution to resolve 20-100 ps optical pulses  together with a time-tagger for the measurement of time delays over a large number of iterations.
 The foundational hypotheses that makes this technique successful consists in assuming negligible the probability of detecting more than one click per signal period, in conditions of low intensity and high repetition rate pulsed source \cite{TCSPC_Bible}.
-
 \autoref{TCSPC_Sketch} shows a visual representation of an ideal setup for TCSPC measurements, where the mode-locking source also gives out an electronic periodic signal that matches the repetition rate of the pulsed laser source. This signal, represented in the picture by the brown cable labeled \emph{SYNC}, reaches directly the time tagger and serves as reference.
 \begin{figure}[hbtp]
 \centering
@@ -382,39 +380,32 @@ The foundational hypotheses that makes this technique successful consists in ass
 \caption{Visual representation of the TCSPC setup implemented in this thesis}
 \label{TCSPC_Sketch}
 \end{figure}
-
 In case of a detection the time tagger measures the amount of time between the detection and the nearest SYNC pulse, collecting the count on an histogram.
 This procedure can be observed in \autoref{Process_TCSPC}, where on the left side (a) is schematized the optical pulse and the part of it where the photon is randomly detected. That event is then collected in the relative bin, highlighted in red in the right side (b). 
-
 A closer examination reveals that the histogram is not showing shape of the optical pulse, but instead the distribution of the photon probability $P(t)$ to collect a photon at a relative time t from the previous SYNC pulse \cite{TCSPC_Bible}.
-
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{TCSPC_Pulse_to_Hist3.jpg}
 \caption{(a) the SNSPD detects a photon within the left side of the optical pulse, at ~120ps from the first reference pulse before. (b) The count is collected in the relative bin.}
 \label{Process_TCSPC}
 \end{figure}
-
-An important feature of TCSPC is the complete absence of losses in the acquisition process. Assuming that the electronics are fast enough, every photon detected is collected into the build up histogram. This high photon efficiency guarantees to this technique a strong signal-to-noise ratio (SNR) for a number $N$ of photons detected.
+An important feature of TCSPC is the complete absence of losses in the acquisition process. Assuming that the electronics are fast enough, every photon detected is collected into the build up histogram. This high photon efficiency guarantees to this technique a strong signal-to-noise ratio (SNR) for a number $N$ of photons detected, where for coherent light we have
 \begin{equation}
 SNR = \sqrt{N}
 \label{SNR_TCSPC}
 \end{equation}
-
 It is worth mentioning that this measurement technique, operated with a reasonable count rate, delivers the shortest possible \emph{instrument response function} (IRF) given the presence of only one SNSPD detector.
+This statement thus needs to be backed by the assumption that the jitter of the SYNC signal and its detection from the time tagger is smaller than the jitter of the single photon detectors.
 Let us recall the formalism we introduced to describe how the different sources of timing jitter combine into the Total Jitter in \autoref{Sec:Def-Jitter}.
 The probability distribution $P(t)$ obtained with TCSPC corresponds to the linear convolution between the optical pulse and the IRF related to the detector, as described in \autoref{TCSPC_convolution}
-
 \begin{equation}
     P(t) = I(t) \circledast IRF(t)
 \label{TCSPC_convolution}
 \end{equation}
- 
-Aside of the description of the main features and advantages, it is worth mentioning the main constraint of TCSPC : The Pile-Up effect.
-
-As we said the key hypotheses for the functioning of this technique is the presence of low count rates, in order to neglect the probability of collecting two photons within the same optical pulse.
+Aside of the description of the main features and advantages, it is worth mentioning the main constraint of TCSPC: The pile-up effect.
+As we said the key hypotheses for the functioning of this technique is the presence of low count rates, in order to neglect the probability of absorbing two photons on a single detector within the same optical pulse.
 When such condition no longer stands a possible second or third detection within the same optical period is lost.
-As a consequence this causes a distortion in the recorded signal waveform, leading to a longer tail easily distinguishable from an ideal gaussian tail like the ones shown in \autoref{Process_TCSPC}.
+As a consequence this causes a distortion in the recorded signal waveform, leading to a longer tail easily distinguishable from an ideal Gaussian tail like the ones shown in \autoref{Process_TCSPC}.
 
 
 

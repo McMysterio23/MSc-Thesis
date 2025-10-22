@@ -1,7 +1,7 @@
 \chapter{EOM ps pulses and correlations}
 \label{Capitolo3}
 In this chapter will be presented our study of an EOM based pulsed laser source to inspect the timing jitter.
-\autoref{sec:Overview} will provide a comprehensive description of the experimental setup, to introduce a brief list of the jitter sources arising from the different components that will be located at \autoref{sec:Jitter Sources}.
+\autoref{sec:Overview} will provide a description of the experimental setup, to introduce a brief list of the jitter sources arising from the different components that will be located at \autoref{sec:Jitter Sources}.
 We will then explain how the raw data are processed in \autoref{sec:DataAnalysis}, focusing in particular on \autoref{subsec:CentralPeakId} where the procedure behind the zero-delay peak recognition is explained.
 Finally \autoref{EOMresults} presents the results we get from our analyses.
 
@@ -18,13 +18,11 @@ Finally \autoref{EOMresults} presents the results we get from our analyses.
 
 
 For this first experimental chapter of this thesis we used a pulsed laser source originated by the use of electro-optic modulators (EOMs) on a starting CW laser source.
-In \autoref{EOM_Setup_BIG} a zoomed out sketch of the experimental setup can be found. The image shows how the CW laser is coupled into a polarization-maintaining single-mode fiber (PM-SMF), and then electro-optically modulated by electronic signals shaped by a high-speed electronic circuit. All these components belong to the Orange shaded area of the picture.
+In \autoref{EOM_Setup_BIG} a sketch of the experimental setup can be found. The image shows how the CW laser is coupled into a polarization-maintaining single-mode fiber (PM-SMF), and then electro-optically modulated in an EOM by electronic signals shaped by a high-speed electronic circuit. All these components belong to the orange shaded area of the picture.
 On behalf of the electrical bias imposed in the PC interface, this part of the setup is responsible for the creation and the modulation of the optical pulses, according to an electronic delay imposed via PC.
-
 The resulting pulsed laser source is then attenuated in intensity using a fiber splitter and then transferred with another fiber to the HBT setup, represented in \autoref{EOM_Setup_BIG} with a green colored area.
-In this part of the setup the beam is equally divided with a fiber directional coupler, and then plugged into the second and third detectors of our SNSPD. As introduced in \autoref{sec:Def-Techniques}, the raw data, consisting of time-tagged detection events recorded by the ID1000 time tagger, will later be used to compute coincidences. These two final instruments consist in a "ID281" SNSPD together with a "ID1000" time tagger, both manifactured by ID Quantique SA.
-For the specifications of the other components we remind to the article of the original designer of this setup, Mio Poortvliet \cite{MioArticle}.
-
+In this part of the setup the beam is equally divided with a fiber directional coupler, and then sent to the second and third detectors of our SNSPD. As introduced in \autoref{sec:Def-Techniques}, the raw data, consisting of time-tagged detection events recorded by the ID1000 time tagger, will later be used to compute coincidences. These two final instruments consist in a "ID281" SNSPD together with a "ID1000" time tagger, both manifactured by ID Quantique SA.
+For the specifications of the other components we refer the reader to the article of the original designer of this setup, Mio Poortvliet \cite{MioArticle}.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{EOMsetupBIG.jpg}
@@ -33,13 +31,14 @@ For the specifications of the other components we remind to the article of the o
 \end{figure}
 It is worth noting that in \autoref{EOM_Setup_BIG} the electro-optic modulation and the electronics that drives it, are only minimally shown. \autoref{EOM_PulseGen} provides a more detailed insight on what is actually driving the pulse generation.
 The first three blocks from the top of the image represent the high speed electronics that generates the driving signal of the two EOMs.
-At the very first stage, a field-programmable gate array (FPGA) generates a trigger signal in the form of a pulse pattern, that is passed to the pulse generator card. This system cam be operated in two regimes. For this project we specifically use the fast pulse generator, with a resolution of 1 ns and a configurable repetition rate ranging from 8 MHz to 500 MHz.
-In our case the FPGA generates 1ns long pulses at the desired repetition rate of around 65~MHz, corresponding to a repetition period of 15.2 ns.  
+At the very first stage, a field-programmable gate array (FPGA) generates a trigger signal in the form of periodic pulses, that are passed to the pulse generator circuit. This system can be operated in two regimes. For this project we specifically use the fast pulse generator, with a configurable repetition rate ranging from 8 MHz to 500 MHz.
+In our case the FPGA generates 1 ns long pulses at the desired repetition rate of around 65~MHz, corresponding to a repetition period of 15.2 ns.  
 At this point, the signal is split and sent to two programmable delay lines with a resolution of 5 ps; a delay is applied to only one of the copies.
 These two refined signals are combined with a 14-Gbps AND gate to obtain the customized pulse pattern whose width is adjustable based on the user-defined bias values for the programmable delay lines that we mentioned earlier.
 Subsequently, the outputs of the pulse compressor board are the two pulse patterns resulting from a XOR port fed with the previous signal and a constant reference signal.
-
-These two outputs, upon previous amplification, are then connected to the RF electrodes of the two cascaded EOMs, whose configuration is depicted in the lower part of \autoref{EOM_PulseGen}.  
+These two outputs, upon previous amplification, are then connected to the RF electrodes of the two cascaded EOMs, whose configuration is depicted in the lower part of \autoref{EOM_PulseGen}.
+Configuring the system with two EOMs in this specific configuration enabled the generation of shorter pulses than those obtained with a single modulating EOM.
+%configuration is found in the optical pulses being produced, the setup with two cascaded EOMs was proved capable of producing shorter pulses    
 
 \begin{figure}[hbtp]
 \centering
@@ -52,35 +51,32 @@ These two outputs, upon previous amplification, are then connected to the RF ele
 \label{sec:Jitter Sources}
 After presenting the experimental architecture, this section examines the dominant sources of timing jitter introduced by the various components described above.
 The pulser electronics encloses the first and main sources of timing jitter.
-Referencing \autoref{EOM_PulseGen}, we identify within the FPGA, the first source of jitter, strictly followed by the effect of the several input discriminators implied in the architecture of the pulse generator card\cite{MioArticle}. The final purity affecting source, for this part comes from the ps-signal amplifier.
+Referencing \autoref{EOM_PulseGen}, we identify within the FPGA, the first source of jitter, strictly followed by the effect of the several input discriminators implied in the architecture of the pulse generator circuit \cite{MioArticle}. The final jitter source, for this part comes from the ps-signal amplifier.
 We assume that the electro-optic modulation of the CW laser is jitter-free, and that group velocity dispersion (GVD) only causes a slight temporal broadening of the pulses, without introducing significant distortions that could lead to timing jitter.
 Focusing once again on \autoref{EOM_Setup_BIG}, it is worth noting that the time-tagged detection events collected from the ID1000 are also affected by other jitter contributions, at this point strictly related to the detection and processing routines in the two final instruments involved.
-The single photon detector carries an intrinsic system-jitter contribution, and this is still an open research topic in the field of the SNSPDs \cite{SNSPD_Jit_1, SNSPD_Jit_2}.
+The single photon detector carries an intrinsic instrument response function contribution, and this is still an open research topic in the field of the SNSPDs \cite{SNSPD_Jit_1, SNSPD_Jit_2}.
 Subsequently, as previously introduced, the electrical signals generated by the SNSPD are transferred to the time tagger. The ID1000 performs click identification based on a defined detection threshold; an improper choice of this threshold can cause delayed detections, introducing a deterministic source of jitter.
 To the best of our knowledge, there may also be a contribution to timing jitter arising from internal clock drifts within the ID1000.
-
 It is worth mentioning that, since we extensively use cables, we cannot exclude the possibility that electromagnetic noise—such as crosstalk—could introduce deterministic timing jitter at multiple points in the setup.
 
 \section{Data analysis}
 \label{sec:DataAnalysis}
-To understand some of the passages that distinguish the data analysis it is necessary to mention before the experimental procedure that lead us to achieve the raw data that we used for our analysis.
-The data acquisition is divided into two different moments : Pulse refining and data acquisition.
-The first part is focused in defining the shape of the optical pulses. Setting initially the delay to the pulse compressor board, and optimizing for the transmission of the two EOMs leads to the production of our optical pulses.
-
-Subsequently, via software we set up the software to do two separate TCSPC on the two detectors using as reference to start the clock the same pulse pattern with period 15.2 ns that also drives the EOM transmission.
-The Time tagger measures the amount of relative time between the reference signal and the detection.
+%To understand some of the passages that distinguish the data analysis it is necessary to mention before the experimental procedure that lead us to achieve the raw data that we used for our analysis.
+To guide the reader through the analysis of the raw data, it is first essential to describe the data acquisition procedure.
+By setting the electronic delay in the pulse compressor board and optimizing the transmission through the two EOMs, customized optical pulse widths can be achieved. A well refined set of electronic delays is thus crucial to run the same experiment with different pulse widths and deepen the analysis.
+Eventually, we decided to run the experiment with this set of electronic delays $d \in \{-10,-25, -35, -50, -60\}$ [ps]. 
+Subsequently, we set up the software to do two separate TCSPC on the two detectors using as reference to start the clock the same pulse pattern with period 15.2 ns that also drives the EOM transmission.
+The time tagger measures the relative time between the reference signal and the detection.
 Every measurement lasted 15 seconds, and each one is related to a different electrical delay value.
-
-In total, 5 measurements have been saved, corresponding to these delays $d \in \{-10,-25, -35, -50, -60\}$ [ps]
-
+%In total, 5 measurements have been saved, corresponding to these delays $d \in \{-10,-25, -35, -50, -60\}$ [ps]
 The resulting raw data, corresponding to a single 15-second measurement, consists of two binary files, each representing a stream of time-tagged detection events from one of the two detectors.
 After appropriate reshaping, each file appears as a two-column array: the first column ($t_{\text{rel}}$) indicates the time difference, in picoseconds, between the detection event and the preceding reference signal, while the second column ($T_{\text{clk}}$) provides the index of the reference event to which the detection is associated.
 %Qui inizio a spiegare come abbiamo letto questi dati !!!
 % Finally, every  and is the result \autoref{eq:Timestamps}.
 To correlate each detection event we then need to convert such binary files into actual streams of detections.
-For this reason, since the indeces of the reference events are expressed in units of the FPGA, by multiplying such values for 15200 ps, the repetition period of the laser, we will compute macroscopically the time of the detection event.
+For this reason, since the indeces of the reference events are expressed in units of the FPGA, by multiplying such values for 15200 ps, the repetition period of the laser, we will compute globally the time of the detection event.
 The microscopical difference of time between the detection and the reference, provides finally the missing piece to retrieve the absolute time of the click.
-The resulting stream of detections is then composed by values computed as shown in \autoref{eq:Timestamps}.
+The resulting stream of detections is then composed by values computed as absolute detection times.
 
 \begin{equation}
     t_{\text{abs}} = i \cdot T_{\text{clk}} + t_{\text{rel}}
@@ -88,7 +84,7 @@ The resulting stream of detections is then composed by values computed as shown 
 \end{equation}
 
 \begin{comment}
-These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned onto an histogram, assuming a certain binsize. By these means there are two main variables, that determine the quality of the data collected : $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
+These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned and an histogram is computed. By these means there are two main variables, that determine the quality of the data collected  $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
 
 \begin{figure}[hbtp]
 \centering
@@ -105,57 +101,47 @@ These two streams of detections are then computed to retrieve the histogram of t
 
 
 
-These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned onto an histogram, assuming a certain binsize. By these means there are two main variables, that determine the quality of the data collected : $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
+These two streams of detections are then computed to retrieve the histogram of the coincidence counts. This procedure has its foundations on the assumption of an initial detection, and following to that the detection within a maximum shift distance in time are identified. The resulting coincidences are then binned onto an histogram, assuming a certain binsize. By these means there are two main variables, that determine the quality of the data collected: $\Delta \tau _{max}$ as well as the width $\delta \tau$ of the bins.
 Since these are count-based histograms, the error related to each one of these coincidences corresponds to the square root of the number of counts detected.
-\autoref{CoincidenceCounts} shows how such coincidences are displayed over the shift time of arrival : the periodic nature of such peaks reflects the periodicity of the optical pulses.
-
+\autoref{CoincidenceCounts} shows how such coincidences are displayed over the shift time of arrival: the periodic nature of such peaks reflects the periodicity of the optical pulses.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=0.75\textwidth]{CoincidenceExample.jpg}
 \caption{Plot showing coincidence counts versus time, expressed in picoseconds. Image related to a measurement with a bias of -10 ps, correspoding to an independently measured duration of the pulse of 65.1 ps}
 \label{CoincidenceCounts}
 \end{figure}
-
-
-
 At this precise point, we implement the procedure of normalization explained in  \autoref{subs:HBT}, more specifically using \autoref{Martinez_g2}.
-
-The key point of this part is to analyse the $g^2 (\tau)$ peaks, automatizing the simultaneous fit of every one of them.
+The key point of this part is to analyse the $g^2 (\tau)$ peaks, automatizing the simultaneous fit of all of them.
 Left and right boundaries of the fitting intervals related to each peak were reconstructed starting from an initial pair, observed graphically.
 All the others were retrieved adding or subtracting multiples of the repetition period of the pulsed laser source, that we remember being 15.2 ns.
 \autoref{FittingIMG} (a) shows how using dashed and non dashed red lines, the fitting intervals are identified among the x-axis.
-
-The gaussian function used to fit the $g^2 (\tau)$ peaks is \autoref{GaussianFit}, where the relation between the FWHM and the sigma is portrayed in \autoref{eqFWHM}. 
+The Gaussian function used to fit the $g^2 (\tau)$ peaks is \autoref{GaussianFit}, where the relation between the FWHM and the sigma is portrayed in \autoref{eqFWHM}. 
 \begin{equation}
 y(x) = A \, \exp\!\left( -\frac{1}{2} \left( \frac{x - d}{\sigma} \right)^{2} \right) + b
 \label{GaussianFit}
 \end{equation}
-
 \begin{equation}
 \sigma = \frac{\mathrm{FWHM}}{2 \sqrt{2 \ln 2}}
 \label{eqFWHM}
 \end{equation}
-
-\autoref{FittingIMG} (b) shows one of the resulting gaussian fits.
+\autoref{FittingIMG} (b) shows one of the resulting Gaussian fits.
 The resulting parameters resulting from each one of these fits will then be saved into an array of pandas dataframes, ready for any further computation.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{NCountsFitting.jpg}
-\caption{(a) Visual representation of the fitting intervals related to two different peaks. The red-dashed line represents the left boundary while the steady red one the right one. (b) Example of the gaussian fit obtained for one peak of the normalized counts plot.}
+\caption{(a) Visual representation of the fitting intervals related to two different peaks. The red-dashed line represents the left boundary while the through red line the right. (b) Example of the Gaussian fit obtained for one peak of the normalized counts plot.}
 \label{FittingIMG}
 \end{figure}
 
 %\newpage
 \subsection{Central peak identification}
 \label{subsec:CentralPeakId}
-At the current stage, the peaks are not displayed over the correct x axis, this is because we just limited our analysis to the fit of the $g^2 (\tau)$ peaks. We still have to identify the Zero-time delay peak, that will be later also referenced as the  $\Delta \tau = 0$ peak.
-
+At the current stage, the peaks are not displayed over the correct x axis, this is because we just limited our analysis to the fit of the $g^2 (\tau)$ peaks. We still have to identify the zero-time delay peak, that will be later also referenced as the  $\Delta \tau = 0$ peak, which is non-trivial because of unknown length of fibers and electrical cables, and the high speed of the signals in them (i.e. the speed of light).
 The main intuition towards the identification of this peculiar peak came from \autoref{FWHMvsTauSingle}.
 In this image are displayed the FWHMs of all the $g^2 (\tau)$ peaks versus the position in the x axis.
-Despite the presence of a vast number of peaks having on average the same width, there are two clear candidates that exhibit a significant less value.
-Among these two candidates we identify as the Zero-time delay peak the one with the least intense width.
+Despite the presence of a vast number of peaks having on average the same width, there are two clear candidates that exhibit a significant smaller value.
+Among these two candidates we identify as the Zero-time delay peak the one who exhibits the least width.
 Subsequently, we shifted the x axis for the value of this peak, in order to retrieve the desired scenario where for zero time delay there is the actual zero time delay peak.
-
 The key reason behind this choice lies in the intrinsic meaning of this central peak, resulting directly from the coincidence counts at zero periods of distance. This motivates what we see in the plot where only two points show lower FWHM values, while the others do show an higher average value.
 Technically we would expect only one clear minima, not two, but we think that the second one arises as a consequence of the use of two cascaded EOMs.
 
@@ -169,7 +155,7 @@ Qui ci sarebbe da dire che io nel codice a questo punto faccio un ultimo giro di
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{FWHMvsTAU_Single.jpg}
-\caption{Plot representing the FWHMs over the time shift coordinates $\tau$ of every peak fitted for one single measurement file. In the lower part of the center of the image can be notices two clear minima points.}
+\caption{Plot representing the FWHMs over the time shift coordinates $\tau$ of every peak fitted for one single measurement file. In the lower part of the center of the image can be notices two clear points with reduced FWHM.}
 \label{FWHMvsTauSingle}
 \end{figure}
 
@@ -182,31 +168,24 @@ Qui ci sarebbe da dire che io nel codice a questo punto faccio un ultimo giro di
 \label{EOMresults}
 Let us now discuss the results of this first part of the project by showing a selection of plots containing datas from 5 different measurements together.
 Of these different measurements, obtained by varying the bias value on the pulse compressor board, we do have an independent measure of the resulting optical pulses. A proper legend has been added to each one of the plots to give notice to the duration values of these optical pulses.
-
 \autoref{FWHMvsTauGeneral} presents a broader version of the plot described when we first introduced the zero time delay identification, this time with 5 different measurements. For each measurement minima points can be seen. 
 Also, we notice how the average value of the FWHM per single population decreases with the decrease of the optical length of the pulses. It is worth mentioning, in this sense that the difference between the average FWHM value that we see in the main plot and the width of the pulse is caused primarily by the jitter of the system.
-The contribution of the jitter increases with shorter pulses : The origin of this effect is still unclear.
-
+The contribution of the jitter increases with shorter pulses: The origin of this effect is still unclear.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{FWHMvsTAU_ALL_Version2.jpg}
 \caption{Measured FWHMs over the shift $\tau$ from the zero-delay peak. The colors represent the 5 different measurements obtained varying the bias value on the pulse compressor board. An independent measure of the corresponding duration of the pulses for each color is located in the legend on the right part of the image. }
 \label{FWHMvsTauGeneral}
 \end{figure}
-
 Subsequently, we focused on the analysis of the variations of the widths of the peaks. According to the reasons explained previously behind the identification of the zero delay peak, we chose as reference for this study of the variations the zero delay peak.
 On this behalf we displayed in \autoref{DeltaFWHMvsPERIOD_General} on the y axis these variations defined according to \autoref{DELTAEXP}
-
 \begin{equation}
 \Delta FWHM (N) = FWHM(N) - FWHM(0) 
 \label{DELTAEXP}
 \end{equation}
 In particular with the letter "N", we refer to the number of periods of distance from the central peak. With this formulation the width variation related to the peak located at negative 15 periods from the central reference is displayed at  $x = -15$ on the x-axis.
-
 Furthermore, \autoref{DeltaFWHMvsPERIOD_ZOOM} is a zoomed in version of the bigger \autoref{DeltaFWHMvsPERIOD_General}, that keeps the color scheme adopted for this section.
-
-About these two images, depicting the variations of the FWHMs over the period number, some conclusions can be made :
-
+About these two images, depicting the variations of the FWHMs over the period number, some conclusions can be made:
 \begin{itemize}
 \item $\Delta FWHM(N)$ is smallest for $n \pm 1$
 \item Outside $n \pm 1$ the variations gets larger and increase steadily over intervals of 10 periods
