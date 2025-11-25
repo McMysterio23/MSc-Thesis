@@ -36,15 +36,21 @@ In this image the noisy rising edge of the waveform crosses the detection thresh
 
 %Questa è la versione ottimizzata una prima volta
 To investigate the optical jitter affecting a pulsed laser source, it is first essential to establish a clear and simple definition of what jitter is.  
+
 \autoref{Sec:Def-Jitter} is dedicated to this purpose, beginning with a fundamental definition derived from signal theory, then gradually refining the concept with key terminology and a relevant example. The section concludes by introducing a basic categorization of the main jitter sources.
+
 \autoref{sec:Def-Pulses} provides the reader with background on optical pulses, highlighting their temporal properties and their connection to the spectral domain. Particular attention is given to the Time-Bandwidth product, which plays a central role in later analysis.
+
 Finally, \autoref{sec:Def-Techniques} outlines the theoretical background of the experimental techniques employed throughout this work, serving as a conceptual bridge between the physical principles and the measurements presented in the following chapters.
 
 \section{Timing jitter}
 \label{Sec:Def-Jitter}
 To understand jitter in the context of optical pulses, we must begin with its general definition.
+
 Jitter was originally introduced in signal theory as the deviation of the timing instants of a sequence of events from their ideal temporal positions. It can affect not only signals designed to be periodical—such as clock ticks—but also repetitive or quasi-periodic signals, including those with asynchronous components~\cite{General_IEEE}.
+
 In this thesis, we focus on jitter as it appears in optical pulses, which serve as carriers of precise timing information for our instruments and detectors. For this reason, the specific notion of \emph{timing jitter} is most relevant. According to the IEEE, timing jitter is defined as the deviation of the actual timing instants of a waveform from their ideal temporal positions~\cite{General_IEEE}.
+
 \autoref{AddAmpl} shows an example of timing jitter induced by additive amplitude noise on a signal’s rising edge. In the figure, the noisy waveform crosses the detection threshold over a spread of time instants, deviating from the ideal reference point.
 
 
@@ -61,6 +67,7 @@ In this thesis, we focus on jitter as it appears in optical pulses, which serve 
 
 Timing jitter can be broadly classified into two main categories: \emph{deterministic jitter (DJ)} and \emph{random jitter (RJ)}. 
 %Deterministic jitter arises from predictable, repeatable sources such as crosstalk, power supply noise, or duty cycle distortion. In contrast, random jitter originates from stochastic processes, such as thermal noise or quantum fluctuations in detection, and is inherently unbounded over long timescales.
+
 We identify with the name Random jitter (RJ) all those jitter sources that don't allow successive references to be systematically determined, and this is the reason why a statistical treatment is needed.
 By applying the Central limit theory, RJ can be treated as a mean zero distortion of the waveform, with an unbounded underlying Gaussian probability density function $f_{RJ}(x)$.
 
@@ -69,15 +76,20 @@ f_{RJ}(x) = \frac{1}{\sigma \sqrt{2 \pi }}e^{-\frac{x^2}{2 \sigma ^2}}
 \label{eq:RandJitter}
 \end{equation}
 In this function we can identify x as the random variable that eventually gives contribution to the Total Jitter (TJ), as well as the standard deviation $\sigma$ that defines entirely the features of $f_{RJ}(x)$.
+
 Random Jitter is studied usually together with a large number of timing errors detected, because with the assumption of low contributions in terms of DJ, we can understand the features of the underlying probability density function.
 %In presence of low contributions in terms of deterministic jitter, Random Jitter can be studied starting from a considerable number of timing errors observed, to which it's possible to draw a statistic and proceed with the analysis.
+
 \autoref{RandomIMG} (a) shows how the pdf $f_{RJ}(x)$ describes the random contribution in terms of jitter to the actual position of the waveform. %without forgetting that such random extraction  happens for every rising or falling edge of the waveform independently.
+
 When the position of a reference event on the waveform can be deterministically retrieved from the previous few ones, we are dealing with deterministic jitter. While DJ has usually several sources, it is common practice to decompose it within the different types of behavior.
 The key difference with RJ lies in the replicable trait of its contributions, in the scenario in which we have fully understood every jitter source.
 By being systemic, DJ doesn't limits to a constant type of behavior, but instead gives an explanation to periodic and non periodic bounded patterns \cite{General_IEEE}. 
 \autoref{RandomIMG} (b) shows how the presence of a deterministic external \emph{aggressor} signal striking the input waveform, causes a shift in the actual detection of the threshold crossing. To a greater extent, we can safely say that such behavior happens also in the scenario of several sources acting together in a deterministic way as presented also in \cite{Crosstalk_IEEE1}.
 %The modelization of the DJ sources, finds its foundations in an alternative use of PDFs, that differs from the ones that we encountered before for the RJ, in terms of domain being always bounded.
+
 Despite the deterministic nature of these sources, the mathematical treatment doesn't differ extremely from the one seen for the RJ, with the key difference being the domain of definition, that results here strictly bounded. The main sources of DJ can be divided onto Data-dependent Jitter(DDJ), Periodic Jitter (PJ) and Bounded Uncorrelated Jitter (BUJ).
+
 Usually, at the first level of any jitter-related study there is the measure of the amount of Total Jitter (TJ), that includes both deterministic and random contributions. Since both of these are described by PDFs, the resulting total jitter happens to be the linear convolution of the random and deterministic density functions.
 While in principle the $f_{RJ}(x)$ is a Gaussian, the other argument of the convolution happens to be the convolution itself of every deterministic source. 
 
@@ -147,7 +159,9 @@ Pulsed laser sources are typically mode-locked, offering inherently low jitter, 
 
 \subsection{Repetition rate and pulse duration}
 Among the basic properties of optical pulses, the repetition rate $f_{\text{rep}}$ and the optical pulse duration are two key parameters that should be mentioned before any mathematical derivation.
+
 The pulse repetition rate, sometimes also called pulse repetition frequency, of a pulsed laser source is defined as the number of emitted pulses in a second, or alternatively the inverse temporal pulse period \cite{RP2005_rep_rate}.
+
 The temporal duration, also referred as pulse width, of an optical pulse is often characterized by its Full Width Half-Magnitude (FWHM). While this definition is widely accepted, for some specific cases (e.g. solitons described by a $sech^2$ function) it is preferred the use of a duration parameter $\tau$ that is approximately the ratio between the FWHM and a conversion parameter valued 1.726 \cite{RP2005_duration}. 
 
 \subsection{Mathematical derivation of the temporal and spectral intensity functions}
@@ -180,6 +194,7 @@ It follows that
 \label{eq:OptPulseFreq}
 \end{align}
 These complex functions, namely $V(t)$ as well as $\nu (t)$ are perfect candidates to define the optical pulse in the time and in the frequency domain respectively.
+
 Moreover this formulation helps defining the spectral amplitude and the spectral phase associated to the frequency domain formulation.
 In particular, by writing
 
@@ -220,6 +235,7 @@ According to the Parceval's Theorem the total energy of a pulse is proportional 
 \]
 This notation clearly enhances the symmetry between the temporal and frequency descriptions of the pulse.
 Regardless of the description that we wish to present, the optical pulse is completely defined by a phase and an intensity. From the mathematical perspective there is a one-on-one correspondence between the two different formulation of the intensity profile.
+
 More specifically the general property that regulates the mutual mapping that links the two formulations arises from the uncertainty principle, stating that: 
 \begin{equation}
     \frac{(\Delta \omega \Delta t)}{2\pi} \ge K
@@ -234,6 +250,7 @@ In such a case the actual duration is
 \end{equation}
 In the scientific literature the value of $(\Delta \omega \Delta t)/2\pi$ is referred as "time-bandwidth product" $P$ and represent a key parameter in the field of ultra short laser pulses. On behalf of the solitons created by mode locked lasers, the value of P is a good indicator to assess the extent to which the production of ideal pulses is being achieved \cite{shapiro1984}.
 %Finally, optical pulses that are completely devoid of amplitude or frequency are defined "bandwidth-limited".
+
 Let us introduce a basic example to conclude the treatment: The Gaussian-shaped spectral intensity profile.
 \begin{equation}
     i(\omega) = e^{\frac{-(\omega - \omega _0 )^2)}{\alpha}}
@@ -294,9 +311,12 @@ Scaletta di cose da dire secondo il nostro caro amico in comune !!!
 %The state of the art of modern single photon detector has managed to reach time resolutions easily higher than conventional high-speed photo diodes
 %The state of the art of modern single photon detectors have easily surpassed the time resolution of conventional high-speed photodiodes.
 Single photon detectors have very high time resolution, being capable of reaching up to 20 ps
+
 Although we study pulsed laser sources, and not single photon light, our analysis rely on a detection system based on a \emph{superconducting nanowire single photon detector (SNSPD)}.
 %Throughout this thesis we study optical pulses using a \emph{superconducting nanowire single photon detector (SNSPD)}
+
 Section \ref{subs:HBT} presents the Hanbury Brown Twiss (HBT) experiment, as well as its tight binding with the second-order correlation function.
+
 Section \ref{subs:TCSPC} includes a description of the functioning principle of the time-correlated single photon counting (TCSPC) procedure, a key way to inspect the shape of the optical pulses with a probabilistic approach.
 %In the end \autoref{subs:comparison} will finally give a comparison in terms of timing jitter to these two experimental techniques, providing the mathematical framework that lies behind the TSCPC and the HBT Start Stop, two sides of the same medal
 
@@ -311,9 +331,12 @@ Section \ref{subs:TCSPC} includes a description of the functioning principle of 
 Using an SNSPD requires to take into account key features like the timing jitter, the detection probability as well as the detector deadtime.
 By definition the deadtime is the time required by the nanowire to recover from the last detection in order to be ready to receive the next one. 
 The order of magnitude of this parameter is generally of nanoseconds: in this scenario a useful strategy is to split the incoming pulsed light into two different fibers, with the use of a 50:50 fiber directional coupler, to carry out detections with two detectors.
+
 This type of experimental setup belongs to the name of two english scientists, Hanbury Brown and Richard Twiss, who developed this intensity interferometer to study the size of Sirius in the mid '50s \cite{Brown:1956zza}.
+
 This experimental setup can be used either in a Start/Stop mode, collecting an histogram of the relative times measured between the \emph{START} and consecutive \emph{STOP} detections of the two detectors, or otherwise by correlating the two streams of clicks. %Richiede manutenzione questa frase !!!!
 In both these cases the final goal is the refinement of the second-order correlation function $g^{2}(\tau)$, with the key difference being that in the latter scenario the resulting coincidences histogram is not limited to consecutive detections like in the first, limited, case.
+
 $g^{2}(\tau)$ quantifies the intensity fluctuations in the correlated signal and the classical formulation is 
 
 \begin{equation}
@@ -372,7 +395,9 @@ The final expression introduces $R_2$ and $R_3$ as the count rates of the two de
 %The time-correlated single photon counting 
 At the basis of the Time-correlated single photon counting technique, usually referred with the name TCSPC, there is the idea to reconstruct the shape of the optical pulse of a mode-locked light source.
 Key ingredients to achieve this result are a single photon detector (SPD) with enough temporal resolution to resolve 20-100 ps optical pulses  together with a time-tagger for the measurement of time delays over a large number of iterations.
+
 The foundational hypotheses that makes this technique successful consists in assuming negligible the probability of detecting more than one click per signal period, in conditions of low intensity and high repetition rate pulsed source \cite{TCSPC_Bible}.
+
 \autoref{TCSPC_Sketch} shows a visual representation of an ideal setup for TCSPC measurements, where the mode-locking source also gives out an electronic periodic signal that matches the repetition rate of the pulsed laser source. This signal, represented in the picture by the brown cable labeled \emph{SYNC}, reaches directly the time tagger and serves as reference.
 \begin{figure}[hbtp]
 \centering
@@ -382,13 +407,14 @@ The foundational hypotheses that makes this technique successful consists in ass
 \end{figure}
 In case of a detection the time tagger measures the amount of time between the detection and the nearest SYNC pulse, collecting the count on an histogram.
 This procedure can be observed in \autoref{Process_TCSPC}, where on the left side (a) is schematized the optical pulse and the part of it where the photon is randomly detected. That event is then collected in the relative bin, highlighted in red in the right side (b). 
-A closer examination reveals that the histogram is not showing shape of the optical pulse, but instead the distribution of the photon probability $P(t)$ to collect a photon at a relative time t from the previous SYNC pulse \cite{TCSPC_Bible}.
+%A closer examination reveals that the histogram is not showing shape of the optical pulse, but instead the distribution of the photon probability $P(t)$ to collect a photon at a relative time t from the previous SYNC pulse \cite{TCSPC_Bible}.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width=1\textwidth]{TCSPC_Pulse_to_Hist3.jpg}
 \caption{(a) the SNSPD detects a photon within the left side of the optical pulse, at ~120ps from the first reference pulse before. (b) The count is collected in the relative bin.}
 \label{Process_TCSPC}
 \end{figure}
+
 An important feature of TCSPC is the complete absence of losses in the acquisition process. Assuming that the electronics are fast enough, every photon detected is collected into the build up histogram. This high photon efficiency guarantees to this technique a strong signal-to-noise ratio (SNR) for a number $N$ of photons detected, where for coherent light we have
 \begin{equation}
 SNR = \sqrt{N}
